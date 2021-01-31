@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="main">
+      <UniqueIdentifier>{015cfdaa-cb7a-4662-b437-9ea1a428c198}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework">
+      <UniqueIdentifier>{93568b71-5dbf-4507-9acf-82f978fbc728}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\Input">
+      <UniqueIdentifier>{a73404bc-c62d-40b9-995d-95486dff350d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\Image">
+      <UniqueIdentifier>{a6a4fe33-f401-49ad-acb4-1a05939be434}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\Figure">
+      <UniqueIdentifier>{b751cfef-9bb0-4c7b-9f65-50305e949bf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\Random">
+      <UniqueIdentifier>{a2c06e90-41f7-4759-af13-570e8aaaa912}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\Math">
+      <UniqueIdentifier>{a63574fa-b934-4bfd-bde3-7a7987ccaf96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\ImageManager">
+      <UniqueIdentifier>{9e448cc3-3e61-4978-9918-9ee27dfbcab5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Camera">
+      <UniqueIdentifier>{c967be80-be29-4295-b192-23ce2b27b2e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Object">
+      <UniqueIdentifier>{bc526dde-57eb-4789-97a7-4b32bb214747}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Physics">
+      <UniqueIdentifier>{e30290b5-16a1-4297-8dfc-6dcebb649292}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Object\Projectile">
+      <UniqueIdentifier>{5c2e0a34-e498-4d27-9ffa-bf87f6afefb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Object\Unit">
+      <UniqueIdentifier>{433f9186-37c0-4ed9-b914-6640341233d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Object\Unit\Player">
+      <UniqueIdentifier>{52532bc1-37e6-4e6b-a5a2-6d586aa5f18d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Object\Unit\Enemy">
+      <UniqueIdentifier>{d11f9886-7aa9-4bbd-a090-3f11c687492f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Object\Map">
+      <UniqueIdentifier>{07dd4ec0-a3e5-46ce-9ad4-db1c50bbec06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Object\Map\Fixed">
+      <UniqueIdentifier>{e04ffdab-94b9-4b0f-bcac-b1ed6e512912}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Object\Unit\Enemy\WitchCat">
+      <UniqueIdentifier>{3f2f7829-884c-4551-a120-443ac406cc13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Object\Unit\Enemy\YetiAndPepe">
+      <UniqueIdentifier>{851bd901-2ee4-4a89-acc5-7690fb6f5105}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Object\Unit\Enemy\MossSnail">
+      <UniqueIdentifier>{813f59cd-cce4-4d2d-95fb-73e1097605bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Object\Projectile\greenShell">
+      <UniqueIdentifier>{0cc23d27-689f-46dc-ac78-dd2db7916464}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Object\Projectile\blueShell">
+      <UniqueIdentifier>{cc8b61b5-6bd4-459c-84bc-513c20ac9b2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Object\Projectile\redShell">
+      <UniqueIdentifier>{912e87f2-36aa-41cd-b4ce-c4a0b1c92add}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Object\Map\LadderRope">
+      <UniqueIdentifier>{89450167-5d6f-43b7-9c6b-c64e4233425c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Object\Map\MovingShell">
+      <UniqueIdentifier>{a78686e0-4b1e-4504-b550-e5f8a06b3ad9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Object\Unit\Enemy\Fanzy">
+      <UniqueIdentifier>{3c9ed63b-37a4-4283-abf7-122953ebe93b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Object\Map\Slippery">
+      <UniqueIdentifier>{97b70b41-9cbd-4261-8d04-247105f0c46b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Object\Map\Thorn">
+      <UniqueIdentifier>{87a00695-ed69-48ea-8e51-bf47b0166176}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Object\Map\Launcher">
+      <UniqueIdentifier>{ab4673bf-e7e6-417c-9611-c9a43d7c1802}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\Object\Projectile\aim">
+      <UniqueIdentifier>{6e83b040-15c9-4430-b869-30ba9dd88b8f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="winapi.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="figure.h">
+      <Filter>framework\Figure</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>framework\Random</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>framework\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>framework\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>framework\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="definemacros.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageManager.h">
+      <Filter>framework\ImageManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>main\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>main\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit.h">
+      <Filter>main\Object\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>main\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>main\Object\Unit\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Fixed.h">
+      <Filter>main\Object\Map\Fixed</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>main\Object\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Status.h">
+      <Filter>main\Object\Unit\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>main\Object\Unit\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="WitchCat.h">
+      <Filter>main\Object\Unit\Enemy\WitchCat</Filter>
+    </ClInclude>
+    <ClInclude Include="YetiAndPepe.h">
+      <Filter>main\Object\Unit\Enemy\YetiAndPepe</Filter>
+    </ClInclude>
+    <ClInclude Include="MossSnail.h">
+      <Filter>main\Object\Unit\Enemy\MossSnail</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>main\Object\Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="LadderRope.h">
+      <Filter>main\Object\Map\LadderRope</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingShell.h">
+      <Filter>main\Object\Map\MovingShell</Filter>
+    </ClInclude>
+    <ClInclude Include="Fanzy.h">
+      <Filter>main\Object\Unit\Enemy\Fanzy</Filter>
+    </ClInclude>
+    <ClInclude Include="BlueShell.h">
+      <Filter>main\Object\Projectile\blueShell</Filter>
+    </ClInclude>
+    <ClInclude Include="Slippery.h">
+      <Filter>main\Object\Map\Slippery</Filter>
+    </ClInclude>
+    <ClInclude Include="Thorn.h">
+      <Filter>main\Object\Map\Thorn</Filter>
+    </ClInclude>
+    <ClInclude Include="GreenShell.h">
+      <Filter>main\Object\Projectile\greenShell</Filter>
+    </ClInclude>
+    <ClInclude Include="RedShell.h">
+      <Filter>main\Object\Projectile\redShell</Filter>
+    </ClInclude>
+    <ClInclude Include="Launcher.h">
+      <Filter>main\Object\Map\Launcher</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>main\Object\Unit\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Aim.h">
+      <Filter>main\Object\Projectile\aim</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="winapi.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="Main+proc.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>framework\Random</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>framework\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>framework\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Math.cpp">
+      <Filter>framework\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageManager.cpp">
+      <Filter>framework\ImageManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>main\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>main\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Unit.cpp">
+      <Filter>main\Object\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics.cpp">
+      <Filter>main\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>main\Object\Unit\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Fixed.cpp">
+      <Filter>main\Object\Map\Fixed</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>main\Object\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="StatusSwitch.cpp">
+      <Filter>main\Object\Unit\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>main\Object\Unit\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="WitchCat.cpp">
+      <Filter>main\Object\Unit\Enemy\WitchCat</Filter>
+    </ClCompile>
+    <ClCompile Include="YetiAndPepe.cpp">
+      <Filter>main\Object\Unit\Enemy\YetiAndPepe</Filter>
+    </ClCompile>
+    <ClCompile Include="MossSnail.cpp">
+      <Filter>main\Object\Unit\Enemy\MossSnail</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>main\Object\Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="LadderRope.cpp">
+      <Filter>main\Object\Map\LadderRope</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingShell.cpp">
+      <Filter>main\Object\Map\MovingShell</Filter>
+    </ClCompile>
+    <ClCompile Include="Fanzy.cpp">
+      <Filter>main\Object\Unit\Enemy\Fanzy</Filter>
+    </ClCompile>
+    <ClCompile Include="BlueShell.cpp">
+      <Filter>main\Object\Projectile\blueShell</Filter>
+    </ClCompile>
+    <ClCompile Include="Slippery.cpp">
+      <Filter>main\Object\Map\Slippery</Filter>
+    </ClCompile>
+    <ClCompile Include="Thorn.cpp">
+      <Filter>main\Object\Map\Thorn</Filter>
+    </ClCompile>
+    <ClCompile Include="GreenShell.cpp">
+      <Filter>main\Object\Projectile\greenShell</Filter>
+    </ClCompile>
+    <ClCompile Include="RedShell.cpp">
+      <Filter>main\Object\Projectile\redShell</Filter>
+    </ClCompile>
+    <ClCompile Include="Launcher.cpp">
+      <Filter>main\Object\Map\Launcher</Filter>
+    </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>main\Object\Unit\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Aim.cpp">
+      <Filter>main\Object\Projectile\aim</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="winapi.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="winapi.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
