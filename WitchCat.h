@@ -35,7 +35,7 @@ public:
 	void Update()override;
 
 	inline Status0 const GetStatus() { return mStatus;}
-	inline void SetStatus(Status0 newStatus) { mStatus = newStatus; }
+	inline void SetStatus(Status0 newStatus) { mStatus = newStatus;}
 
 	vector <GreenShell*> GetGreenShellList() {return mGreenShellList;}
 

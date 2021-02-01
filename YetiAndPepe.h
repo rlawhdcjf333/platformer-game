@@ -28,5 +28,6 @@ public:
 	vector <BlueShell*> GetBlueShellList() { return mBlueShellList; }
 
 	void StatusSwitch();
+	void EraseBlueShell(BlueShell* blueShellPtr);
 };
 

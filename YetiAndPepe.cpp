@@ -2,6 +2,7 @@
 #include "YetiAndPepe.h"
 #include "Image.h"
 #include "BlueShell.h"
+#include "Physics.h"
 
 void YetiAndPepe::Init(float X, float Y)
 {
@@ -51,15 +52,18 @@ void YetiAndPepe::Update()
 
 	for (BlueShell*& elem : mBlueShellList)
 	if (elem->GetRc().top>-1640) {
-		SafeDelete(elem);
+		EraseBlueShell(elem);
+		break;
 	}
 
-	for (int i = 0; i < mBlueShellList.size(); i++) {
-		if (mBlueShellList[i] == NULL) {
-			mBlueShellList.erase(mBlueShellList.begin() + i);
-			i--;
-		}
-	}
+	Physics::GetInstance()->DefenseW();
+
+	//for (int i = 0; i < mBlueShellList.size(); i++) {
+	//	if (mBlueShellList[i] == NULL) {
+	//		mBlueShellList.erase(mBlueShellList.begin() + i);
+	//		i--;
+	//	}
+	//}
 
 
 }
@@ -79,4 +83,17 @@ void YetiAndPepe::StatusSwitch()
 		if (mFrameX > 8) { mFrameX = 0; mStatus = Status1::leftIdle; }
 		break;
 	}
+}
+
+void YetiAndPepe::EraseBlueShell(BlueShell* blueShellPtr)
+{
+
+	for (int i = 0; i < mBlueShellList.size(); i++) {
+		if (mBlueShellList[i] == blueShellPtr) {
+			SafeDelete(mBlueShellList[i]);
+			mBlueShellList.erase(mBlueShellList.begin() + i);
+			i--;
+		}
+	}
+
 }

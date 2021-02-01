@@ -149,6 +149,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Fanzy.h" />
     <ClInclude Include="GreenShell.h" />
+    <ClInclude Include="Grendel.h" />
     <ClInclude Include="LadderRope.h" />
     <ClInclude Include="Launcher.h" />
     <ClInclude Include="MossSnail.h" />
@@ -187,10 +188,12 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Fanzy.cpp" />
     <ClCompile Include="GreenShell.cpp" />
+    <ClCompile Include="Grendel.cpp" />
     <ClCompile Include="LadderRope.cpp" />
     <ClCompile Include="Launcher.cpp" />
     <ClCompile Include="MossSnail.cpp" />
     <ClCompile Include="MovingShell.cpp" />
+    <ClCompile Include="PlayerInput.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="RedShell.cpp" />
     <ClCompile Include="Skill.cpp" />

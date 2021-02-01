@@ -4,11 +4,13 @@
 
 class Image;
 class Skill;
+class Grendel;
 
 class Player :public Unit
 {
 	Status mStatus;
 	Skill* mSkill;
+	Grendel* mGrendel;
 
 	bool onthePlatform;
 	bool ontheLadder;
@@ -18,7 +20,7 @@ class Player :public Unit
 	int SkillQTime;
 	bool SkillW;
 	int SkillWTime;
-	bool isDead;
+	bool IsDead;
 
 public:
 
@@ -27,6 +29,7 @@ public:
 	void Update();
 	void Render(HDC hdc, int ResizeX, int ResizeY)override;
 
+	void PlayerInput();
 	void StatusSwitch();
 	inline Status const GetStatus() { return mStatus; }
 	inline void SetStatus(Status StatusX) { mStatus = StatusX; }
@@ -43,5 +46,8 @@ public:
 	void istheSkill();
 
 	Skill* GetSkill() { return mSkill; }
+
+	void SetIsDead(bool trueOrFalse) { IsDead = trueOrFalse; }
+	void DeathAnimation();
 };
 

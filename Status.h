@@ -14,7 +14,14 @@ enum class Status : int {
 	rightDown,
 	laddering,
 	rope
-
 };
 
+class DeathImage {
 
+	Singleton(DeathImage)
+	Image* mImage = ImageManager::GetInstance()->FindImage(L"Death");
+
+public:
+
+	Image* GetImage() { return mImage; }
+};

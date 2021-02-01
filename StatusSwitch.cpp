@@ -1,8 +1,10 @@
 #include "Player.h"
-#include "Fixed.h"
+#include "Status.h"
+#include "Grendel.h"
 
 void Player::StatusSwitch()
 {
+	//상태 스위치 , Status Motion Frame Changer
 	switch (mStatus) {
 
 	case Status::leftIdle:
@@ -56,15 +58,15 @@ void Player::StatusSwitch()
 		break;
 
 	case Status::leftThrow:
-		mFrameY = 6;
-		if (mFrameCount > 10) { mFrameCount = 0, mFrameX++; }
-		if (mFrameX > 2) mFrameX = 0;
+		mFrameY = 6; mVec = 0; onthePlatform = true;
+		if (mFrameCount > 15) { mFrameCount = 0, mFrameX++; }
+		if (mFrameX > 2) { mFrameX = 0; mStatus = Status::leftIdle;  }
 		break;
 
 	case Status::rightThrow:
-		mFrameY = 7;
-		if (mFrameCount > 10) { mFrameCount = 0, mFrameX++; }
-		if (mFrameX > 2) mFrameX = 0;
+		mFrameY = 7; mVec = 0; onthePlatform = true;
+		if (mFrameCount > 15) { mFrameCount = 0, mFrameX++; }
+		if (mFrameX > 2) { mFrameX = 0; mStatus = Status::rightIdle;  }
 		break;
 
 	case Status::laddering:
@@ -85,3 +87,18 @@ void Player::StatusSwitch()
 	}
 }
 
+void Player::DeathAnimation() {
+
+	mFrameCount++;
+	mImage = DeathImage::GetInstance()->GetImage(); mFrameY = 0;
+	if (mFrameCount > 10) { mFrameCount = 0; mFrameX++; }
+	if (mFrameX > 5) mFrameX = 5;
+
+	if (Input::GetInstance()->GetKeyD('R')) { //부활..그렌델 소환 , resurrect & summon Grendel
+		IsDead = false; mImage = ImageManager::GetInstance()->FindImage(L"Player");
+		mStatus = Status::leftIdle; mFrameX = 1; mVec = 0;
+		mGrendel = new Grendel();
+		mGrendel->Init(mX-50, mY - 200);
+	}
+
+}

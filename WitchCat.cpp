@@ -2,6 +2,7 @@
 #include "WitchCat.h"
 #include "Image.h"
 #include "GreenShell.h"
+#include "Physics.h"
 
 void WitchCat::Init(float X, float Y)
 {
@@ -89,6 +90,8 @@ void WitchCat::Update()
 			i--;
 		}
 	}
+
+	Physics::GetInstance()->WitchCatHit();
 
 	mFrameCount++;
 	StatusSwitch();

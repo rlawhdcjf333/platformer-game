@@ -19,13 +19,13 @@ void Aim::On()
 	mX = g_mPosit.x;
 	mY = Camera::GetInstance()->GetY()+g_mPosit.y; //이거 알아내는데 한세월;;
 
-	float Angle = Math::GetAngle(mPlayer->GetX() + 40, mPlayer->GetY() + 45, mX, mY);
+	mAngle = Math::GetAngle(mPlayer->GetX() + 40, mPlayer->GetY() + 45, mX, mY);
 	float Vec = mPlayer->GetSkill()->GetQPower();
 
 	for (int i = 0; i < 20; i++) {
 
-		trajecLine[i].x = mPlayer->GetX() + 40 + Vec * i * cosf(Angle);
-		trajecLine[i].y = mPlayer->GetY() + 45 - Vec * i * sinf(Angle) + 0.58 * i * 0.58 * i;
+		trajecLine[i].x = mPlayer->GetX() + 40 + Vec * i * cosf(mAngle);
+		trajecLine[i].y = mPlayer->GetY() + 45 - Vec * i * sinf(mAngle) + 0.58 * i * 0.58 * i;
 	}
 }
 

@@ -6,6 +6,7 @@ class Aim :public Projectile
 {
 	Singleton(Aim)
 
+	float mAngle;
 	int mFrameX;
 	int mFrameY;
 	
@@ -18,5 +19,7 @@ public:
 	void On();
 	void Render(HDC hdc)override;
 	void Off();
+
+	float GetAimAngle() { return mAngle; }
 };
 

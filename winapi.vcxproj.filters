@@ -103,6 +103,9 @@
     <Filter Include="main\Object\Projectile\aim">
       <UniqueIdentifier>{6e83b040-15c9-4430-b869-30ba9dd88b8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="main\Object\Unit\Grendel">
+      <UniqueIdentifier>{0c7640e8-1bb4-4223-80b2-93635c0e1184}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -216,6 +219,9 @@
     <ClInclude Include="Aim.h">
       <Filter>main\Object\Projectile\aim</Filter>
     </ClInclude>
+    <ClInclude Include="Grendel.h">
+      <Filter>main\Object\Unit\Grendel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winapi.cpp">
@@ -316,6 +322,12 @@
     </ClCompile>
     <ClCompile Include="Aim.cpp">
       <Filter>main\Object\Projectile\aim</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerInput.cpp">
+      <Filter>main\Object\Unit\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Grendel.cpp">
+      <Filter>main\Object\Unit\Grendel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

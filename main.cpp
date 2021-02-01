@@ -35,6 +35,8 @@ void Main::Init() {
 	ImageManager::GetInstance()->LoadFromFile(L"BlueShell", Resources(L"blueShell.bmp"), 25, 25, 1, 1, true);
 	ImageManager::GetInstance()->LoadFromFile(L"RedShell", Resources(L"redShell.bmp"), 25, 25, 1, 1, true);
 	ImageManager::GetInstance()->LoadFromFile(L"Aim", Resources(L"aim.bmp"), 32,96, 1, 3, true);
+	ImageManager::GetInstance()->LoadFromFile(L"Death", Resources(L"death.bmp"), 462, 38, 6, 1, true);
+	ImageManager::GetInstance()->LoadFromFile(L"Grendel", Resources(L"grendel.bmp"), 276, 154, 3, 1, true);
 
 	mPlayer = new Player();
 	mPlayer->Init();
@@ -119,14 +121,15 @@ void Main::Release() {
 
 void Main::Update() {
 
-	mPlayer->Update();
-	
-	Camera::GetInstance()->Update();
-
 	for (Enemy* elem : mEnemyList) {
 		
 		elem->Update();
 	}
+
+	mPlayer->Update();
+	
+	Camera::GetInstance()->Update();
+
 
 	for (Map* elem : mMapList) {
 
@@ -138,6 +141,7 @@ void Main::Render(HDC hdc) {
 
 	HDC backDC = mBkBuff->GetHDC();
 	PatBlt(backDC, 0, 0, WINSIZEX, WINSIZEY, WHITENESS); {
+
 
 		mBackground->Render(backDC, 0 - Camera::GetInstance()->GetX(), 720-4320-Camera::GetInstance()->GetY());
 		
