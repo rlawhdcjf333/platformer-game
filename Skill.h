@@ -1,11 +1,14 @@
 #pragma once
 
 class RedShell;
+class Image;
+class Player;
 
-class Skill { //사실상 그냥 redshell Manager;
+class Skill {
 
 	float qPower;
-
+	Player* mPlayer;
+	Image* mImage = ImageManager::GetInstance()->FindImage(L"Clairvoyance");
 	vector <RedShell*> mRedShellListQ;
 	vector <RedShell*> mRedShellListW;
 
@@ -25,4 +28,5 @@ public:
 	void SetQPower(float size) { qPower = size; }
 	float GetQPower() { return qPower; }
 
+	void SetPlayer(Player* playerPtr) { mPlayer = playerPtr; }
 };

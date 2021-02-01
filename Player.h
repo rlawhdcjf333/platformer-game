@@ -48,6 +48,8 @@ public:
 	Skill* GetSkill() { return mSkill; }
 
 	void SetIsDead(bool trueOrFalse) { IsDead = trueOrFalse; }
+	bool GetIsDead() { return IsDead; }
+
 	void DeathAnimation();
 };
 

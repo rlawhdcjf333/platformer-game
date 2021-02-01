@@ -19,9 +19,9 @@ void Fanzy::Init(float X, float Y)
 	mRcList.push_back(mRc);
 
 
-
 	Unit::Init(L"Fanzy", 1080, -2880-60);
 
+	mY = -2885; //카메라 클리핑 기준선 Camera clipping line 
 }
 
 void Fanzy::Render(HDC hdc)
@@ -46,7 +46,10 @@ void Fanzy::Update()
 	if (mFrameCount > 10) { mFrameCount = 0; mFrameX++; }
 	if (mFrameX > 12) mFrameX = 0;
 
-	if (mFrameX > 6) mInvisibility = true;
+	//팬지 투시 발동 Fanzy clairvoyance activation
+	if (Input::GetInstance()->GetKey('E')) {
+		if (mFrameX > 6) mInvisibility = true;
+		else mInvisibility = false;
+	}
 	else mInvisibility = false;
-
 }

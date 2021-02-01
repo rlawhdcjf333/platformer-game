@@ -106,6 +106,9 @@
     <Filter Include="main\Object\Unit\Grendel">
       <UniqueIdentifier>{0c7640e8-1bb4-4223-80b2-93635c0e1184}</UniqueIdentifier>
     </Filter>
+    <Filter Include="main\Interface">
+      <UniqueIdentifier>{62e954c1-bc8a-4d76-ae40-d8927cf7248f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -222,6 +225,9 @@
     <ClInclude Include="Grendel.h">
       <Filter>main\Object\Unit\Grendel</Filter>
     </ClInclude>
+    <ClInclude Include="Interface.h">
+      <Filter>main\Interface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winapi.cpp">
@@ -328,6 +334,9 @@
     </ClCompile>
     <ClCompile Include="Grendel.cpp">
       <Filter>main\Object\Unit\Grendel</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface.cpp">
+      <Filter>main\Interface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

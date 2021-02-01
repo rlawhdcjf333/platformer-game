@@ -7,6 +7,7 @@ void MossSnail::Init(float X, float Y)
 	mImage = ImageManager::GetInstance()->FindImage(L"MossSnail");
 	mVec = 1;
 	mAngle = 0;
+	mY = -2500; //카메라 클리핑 기준선  Camera clipping line
 
 	mRc = RectMake(270, -2160 - 120 - 38, 40, 40);
 	mStruct = { mRc, 270 };
@@ -30,7 +31,7 @@ void MossSnail::Init(float X, float Y)
 
 void MossSnail::Render(HDC hdc)
 {
-	for(RcAndRange& const elem : mStructList) //복사 비용이 너무 크므로 const 포인터(&)... the compiler complains
+	for(RcAndRange& const elem : mStructList) //복사 비용이 너무 크므로 const 포인터(&)... due to the compiler complaining about a large amount of copy data
 	mImage->ScaleFrameRender(hdc, elem.rc.left-Camera::GetInstance()->GetX(), elem.rc.top-Camera::GetInstance()->GetY(), mFrameX, mFrameY, 40, 40);
 
 }
@@ -41,7 +42,7 @@ void MossSnail::Release()
 
 void MossSnail::Update()
 {
-	for (RcAndRange& const elem : mStructList) { //마찬가지
+	for (RcAndRange& const elem : mStructList) { //마찬가지 same with above 
 		if (elem.rc.right > elem.rightend) mStatus = Status2::leftMove;
 		if (elem.rc.left < elem.leftend) mStatus = Status2::rightMove;
 	}

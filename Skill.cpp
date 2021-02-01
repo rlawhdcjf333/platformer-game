@@ -3,22 +3,24 @@
 #include "Skill.h"
 #include "Aim.h"
 #include "RedShell.h"
+#include "Image.h"
 #include "Physics.h"
 
 void Player::istheSkill() {
 
+	//Q 쿨다운 및 조준 설정 skill Q cooldown and aiming setting
 	SkillQTime--;
-	if (SkillQTime < -200) SkillQTime = -200;
+	if (SkillQTime < -200) SkillQTime = -200; //cooldown 2sec
 	if (SkillQ == true and mSkill->GetQPower()<50) mSkill->SetQPower(mSkill->GetQPower() + 0.8f);
 
-	
-	if (Input::GetInstance()->GetKey('Q') and SkillQTime==-200) { //달팽이 던지기 조준 토글 쿨다운 2초
-
+	// Q 조준 및 발동 skill Q lockon and activation
+	if (Input::GetInstance()->GetKey('Q') and SkillQTime==-200) { 
+		
 		Aim::GetInstance()->On();
 		SkillQ = true;
 	}
-	if (Input::GetInstance()->GetKeyU('Q') and SkillQTime == -200) {// 달팽이 던지기 발동
-
+	if (Input::GetInstance()->GetKeyU('Q') and SkillQTime == -200) {
+		
 		float Angle = Aim::GetInstance()->GetAimAngle();
 		if (0.5*PI<Angle and Angle<1.5*PI)mStatus = Status::leftThrow;
 		else mStatus = Status::rightThrow;
@@ -33,26 +35,25 @@ void Player::istheSkill() {
 		Aim::GetInstance()->Off();
 	}
 
-
+	// W 발동 skill W activation
 	SkillWTime--;
 	if (SkillWTime < -500) SkillWTime = -500;
-	if (Input::GetInstance()->GetKeyD('W') and SkillW==false) {// 달팽이 방어 발동
+	if (Input::GetInstance()->GetKeyD('W') and SkillW==false) {
 		RedShell* mRedShell = new RedShell();
-		for (int i = 0; i < 25; i++) { //사방 팔방 위치 초기화
+		for (int i = 0; i < 10; i++) { 
 			mRedShell = new RedShell();
-			mRedShell->SetXY(mX + 40 + 150 * cosf(0.08 * i * PI), mY + 45 - 150 * sinf(0.08 * i * PI));
+			mRedShell->SetXY(mX + 40 + 150 * cosf(0.2 * i * PI), mY + 45 - 150 * sinf(0.2 * i * PI));
 			mRedShell->Init(0, 0);
 			mSkill->AddRedShellW(mRedShell);
 		}
 		SkillW = true;
-		SkillWTime = 300; //지속 3초
+		SkillWTime = 300; // effect remains for 3 sec
 	}
 
-	//각각 (있으면) 업데이트
+	//모든 투사체 업데이트 Projectile(all if any;) Update
 	for (RedShell*& elem : mSkill->GetRedShellListQ()) {
 		if (elem != NULL) elem->Update();
 	}
-	
 	for (RedShell*& elem : mSkill->GetRedShellListW()) {
 		if (elem != NULL) {
 			float Angle = Math::GetAngle(mX+40, mY+45, elem->GetX() + 13, elem->GetY() + 13);
@@ -61,23 +62,25 @@ void Player::istheSkill() {
 		}
 	}
 
-	//삭제 트리거
+	//화면 밖 Q 투사체 삭제 release Q projectiles under the bottomline
 	for (RedShell*& elem : mSkill->GetRedShellListQ()) {
 		if (elem != NULL) {
-			if (elem->GetRc().top > WINSIZEY) { //창밖(아래)으로 나가면 컷
+			if (elem->GetRc().top > WINSIZEY) { 
 				mSkill->EraseRedShellQ(elem);
 			}
 		}
 	}
 
-	Physics::GetInstance()->EraseQ(); // 몹에 맞으면 컷, Physics 싱글턴
+	// 몹에 맞으면 Q 투사체 삭제 @ Singleton Physics, release the Q projectile hitting an enemy
+	Physics::GetInstance()->EraseQ(); 
 
+	// W 지속시간 해제 및 쿨다운 skill W ending and cooldown
 	if (SkillWTime == 0) {
 		for (RedShell*& elem : mSkill->GetRedShellListW()) {
 			mSkill->EraseRedShellW(elem);
 		}
 	}
-	if (SkillWTime == -500) SkillW = false; //W 쿨다운 5초
+	if (SkillWTime == -500) SkillW = false; //cooldown 5 sec
 }
 
 void Skill::EraseRedShellQ(RedShell* redShellPtr)
@@ -104,13 +107,19 @@ void Skill::EraseRedShellW(RedShell* redShellPtr)
 
 void Skill::Render(HDC hdc)
 {
+	//Q 렌더 Skill Q
 	for (RedShell* elem : mRedShellListQ) {
 		if (elem != NULL) elem->Render(hdc);
 	}
 
+	//W 렌더 Skill W
 	for (RedShell* elem : mRedShellListW) {
 		if (elem != NULL) elem->Render(hdc);
 	}
+
+	if (Input::GetInstance()->GetKey('E'))
+		mImage->AlphaRender(hdc, mPlayer->GetX() + 15 -Camera::GetInstance()->GetX(), 
+			mPlayer->GetY() - 50 - Camera::GetInstance()->GetY(), 0.7f);
 
 }
 

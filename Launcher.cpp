@@ -5,7 +5,7 @@
 
 void Launcher::Init()
 {
-
+	mY = -1200;
 	mLaunchCount = 0;
 	mFiringPower = 30;
 	mLauncherList.insert(make_pair("1", nullptr));

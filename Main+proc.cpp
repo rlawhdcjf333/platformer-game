@@ -39,3 +39,5 @@ LRESULT Main::MainProc(HWND a, UINT b, WPARAM c, LPARAM d) {
 
 	return (DefWindowProc(a, b, c, d));
 }
+
+

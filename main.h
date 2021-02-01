@@ -21,6 +21,8 @@ private:
 	vector<Map*> mMapList;
 
 	vector <Projectile*> mProjectileList;
+
+	bool mToggeleMiniMap=true;
 	
 public:
 	void Init();
@@ -30,6 +32,6 @@ public:
 
 	LRESULT MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);
 
-
+	void InterfaceRender(HDC hdc);
 };
 

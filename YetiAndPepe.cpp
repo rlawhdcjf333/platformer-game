@@ -9,6 +9,7 @@ void YetiAndPepe::Init(float X, float Y)
 
 	Unit::Init(L"YetiAndPepe", X,Y);
 	mStatus = Status1::leftIdle;
+	mY = -2005 + 130;
 }
 
 void YetiAndPepe::Render(HDC hdc)
@@ -57,14 +58,6 @@ void YetiAndPepe::Update()
 	}
 
 	Physics::GetInstance()->DefenseW();
-
-	//for (int i = 0; i < mBlueShellList.size(); i++) {
-	//	if (mBlueShellList[i] == NULL) {
-	//		mBlueShellList.erase(mBlueShellList.begin() + i);
-	//		i--;
-	//	}
-	//}
-
 
 }
 

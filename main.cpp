@@ -14,6 +14,7 @@
 #include "Thorn.h"
 #include "Launcher.h"
 #include "Aim.h"
+#include "Interface.h"
 
 void Main::Init() {
 
@@ -37,6 +38,8 @@ void Main::Init() {
 	ImageManager::GetInstance()->LoadFromFile(L"Aim", Resources(L"aim.bmp"), 32,96, 1, 3, true);
 	ImageManager::GetInstance()->LoadFromFile(L"Death", Resources(L"death.bmp"), 462, 38, 6, 1, true);
 	ImageManager::GetInstance()->LoadFromFile(L"Grendel", Resources(L"grendel.bmp"), 276, 154, 3, 1, true);
+	ImageManager::GetInstance()->LoadFromFile(L"Clairvoyance", Resources(L"clairvoyance.bmp"), 50, 52, 1, 1, true);
+	ImageManager::GetInstance()->LoadFromFile(L"InterfaceSkill", Resources(L"interfaceSkill.bmp"),280,70, 4, 1, true);
 
 	mPlayer = new Player();
 	mPlayer->Init();
@@ -120,6 +123,7 @@ void Main::Release() {
 }
 
 void Main::Update() {
+	Interface::GetInstance()->Update();
 
 	for (Enemy* elem : mEnemyList) {
 		
@@ -130,11 +134,13 @@ void Main::Update() {
 	
 	Camera::GetInstance()->Update();
 
-
 	for (Map* elem : mMapList) {
 
 		elem->Update();
 	}
+
+	//¹Ì´Ï¸Ê Åä±Û Toggel minimap
+	if (Input::GetInstance()->GetKeyD('M')) { mToggeleMiniMap = !mToggeleMiniMap; } 
 }
 
 void Main::Render(HDC hdc) {
@@ -142,23 +148,23 @@ void Main::Render(HDC hdc) {
 	HDC backDC = mBkBuff->GetHDC();
 	PatBlt(backDC, 0, 0, WINSIZEX, WINSIZEY, WHITENESS); {
 
-
 		mBackground->Render(backDC, 0 - Camera::GetInstance()->GetX(), 720-4320-Camera::GetInstance()->GetY());
 		
 		mPlayer->Render(backDC,80,95);
 
 		for (Enemy* elem : mEnemyList) {
-
+			if(elem->GetY()>Camera::GetInstance()->GetY() and elem->GetY()<Camera::GetInstance()->GetY()+720)
 			elem->Render(backDC);
 		}
 
 		for (Map* elem : mMapList) {
-
+			if (elem->GetY() > Camera::GetInstance()->GetY() and elem->GetY() < Camera::GetInstance()->GetY() + 720)
 			elem->Render(backDC);
 		}
+
+		InterfaceRender(backDC);
 	}
 
 	mBkBuff->Render(hdc, 0, 0);
 }
-
 

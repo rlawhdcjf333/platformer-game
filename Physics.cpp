@@ -43,6 +43,9 @@ void Physics::IsonthePlatform() {
 			}
 		}
 
+		if (temp > 35) { mPlayer->SetIsDead(true); mPlayer->SetFrameX(0); }
+
+
 		//2´Ü°è ¹Ì²ø¹Ù´Ú ÆÇÁ¤
 		for (RECT elem : mMapList[2]->GetMapList()) {
 			for (int i = mPlayer->GetX() + 22; i < mPlayer->GetX() + 55; i++) {

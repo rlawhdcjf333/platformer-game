@@ -8,6 +8,7 @@ void MovingShell::Init()
 	mImage=ImageManager::GetInstance()->FindImage(L"GreenShell");
 	mRadius = 150;
 
+	mY = 60;
 	mW = mImage->GetFrameWidth();
 	mH = mImage->GetFrameHeight();
 	

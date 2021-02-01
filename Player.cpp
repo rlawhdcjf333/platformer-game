@@ -6,13 +6,16 @@
 #include "Skill.h"
 #include "Aim.h"
 #include "Grendel.h"
+#include "Interface.h"
 
 void Player::Init()
 {
 
 	Unit::Init(L"Player", WINSIZEX/2-40, 500);
 
+	Interface::GetInstance()->SetPlayer(this);
 	mSkill = new Skill();
+	mSkill->SetPlayer(this); 
 	mVec = 0;
 	mAngle = 0;
 	mFrameCount = 0;
@@ -42,7 +45,6 @@ void Player::Update()
 	}
 	if (mGrendel != NULL) {
 		mGrendel->Update();
-
 		if (mGrendel->GetFrameX() == 2 and mGrendel->GetFrameCount() == 25) SafeDelete(mGrendel)
 	}
 	//키입력 처리 @ PlayerInput cpp,  Key input
@@ -61,7 +63,7 @@ void Player::Update()
 	Move();
 
 	//위치 보정 relocation
-	if (mRc.bottom > WINSIZEY - 10) { mY = WINSIZEY - 105; } //화면 바닥, Bottomline
+	if (mRc.bottom > WINSIZEY-15) { mY = WINSIZEY - 105; } //화면 바닥, Bottomline
 	if (mRc.right > WINSIZEX) { mX = WINSIZEX - mW, mAngle = PI - mAngle; } //오른쪽, Rightend
 	if (mRc.left < 0) { mX = 0, mAngle = PI - mAngle; } //왼쪽, Leftend
 
@@ -75,9 +77,13 @@ void Player::Update()
 
 void Player::Render(HDC hdc, int ResizeX, int ResizeY)
 {
+	//부활 그렌델 이펙트 렌더 Grendel E
 	if(mGrendel!=NULL) mGrendel->Render(hdc);
+	//플레이어 렌더 Player
 	Unit::Render(hdc,ResizeX, ResizeY);
+	//스킬 이펙트 렌더 Skill E
 	mSkill->Render(hdc);
+	//조준선 렌더 Aim Object
 	if(SkillQ==true) Aim::GetInstance()->Render(hdc);
 }
 

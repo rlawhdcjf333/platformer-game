@@ -94,9 +94,11 @@ void Player::DeathAnimation() {
 	if (mFrameCount > 10) { mFrameCount = 0; mFrameX++; }
 	if (mFrameX > 5) mFrameX = 5;
 
-	if (Input::GetInstance()->GetKeyD('R')) { //ºÎÈ°..±×·»µ¨ ¼ÒÈ¯ , resurrect & summon Grendel
+	//ºÎÈ° ±×·»µ¨ ÅÂÃÊ ±ÍÈ¯ , resurrection, summon Grendel, return to archeage
+	if (Input::GetInstance()->GetKeyD('R')) { 
 		IsDead = false; mImage = ImageManager::GetInstance()->FindImage(L"Player");
-		mStatus = Status::leftIdle; mFrameX = 1; mVec = 0;
+		mX = WINSIZEX / 2-40, mY = 500; mRc = RectMake(mX, mY, mW, mH);
+		mStatus = Status::leftIdle; mFrameX = 1; mVec = 0; 
 		mGrendel = new Grendel();
 		mGrendel->Init(mX-50, mY - 200);
 	}
