@@ -36,6 +36,10 @@ void Main::InterfaceRender(HDC hdc)
 		DeleteObject(newFont);
 	}
 
+	//데미지 인터페이스
+	Interface::GetInstance()->DamageEffectRender(hdc, Physics::GetInstance()->GethitBox().left, Physics::GetInstance()->GethitBox().top,
+		Physics::GetInstance()->GethitBox().right - Physics::GetInstance()->GethitBox().left);
+
 	//스킬창 인터페이스 Skill interface toggle
 	Interface::GetInstance()->Render(hdc);
 	
@@ -131,4 +135,22 @@ void Interface::Render(HDC hdc)
 	
 
 	//느낀점 : 스킬 지속시간과 쿨다운 등은 변수로 지정하는게 관리에 편하다 Skill remaining or cooldown time are better to be setted in variables than constants;
+}
+
+void Interface::DamageEffectRender(HDC hdc, float x, float y, float W)
+{
+	if (mDamageEffectOn) {
+
+		mDamageEffectCount++;
+		float Alpha = (float)(51-mDamageEffectCount)/51;
+
+		mMiss->AlphaScaleFrameRender(hdc, x, y - Camera::GetInstance()->GetY(),0, mRandFrameY, W*0.9,W*0.45, Alpha);
+
+		if (mDamageEffectCount > 50) {
+			mDamageEffectCount = 0;
+			mRandFrameY = Random::GetInstance()->RandInt(3);
+			mDamageEffectOn = false;
+		}
+
+	}
 }

@@ -7,10 +7,13 @@ class Enemy;
 
 class Physics
 {
-	Singleton(Physics)
+	Singleton(Physics) //모든 충돌처리는 Physics 싱글턴이 처리한다
 
 	float mGravity;
-	float mDamage;
+	float mDamage; //이건 낙하데미지임 실상 바닥 충돌 순간의 중력가속
+
+	RECT mhitBox;
+	
 
 	Player* mPlayer;
 	vector <Map*> mMapList;
@@ -35,6 +38,8 @@ public:
 	void SetPlayer(Player* playerPtr) { mPlayer = playerPtr; }
 	void SetMap(vector <Map*> mapPtrList);
 	void SetEnemy(vector <Enemy*> enemyPtrList);
+
+	RECT GethitBox();
 
 
 };

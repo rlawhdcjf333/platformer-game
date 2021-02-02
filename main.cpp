@@ -40,6 +40,8 @@ void Main::Init() {
 	ImageManager::GetInstance()->LoadFromFile(L"Grendel", Resources(L"grendel.bmp"), 276, 154, 3, 1, true);
 	ImageManager::GetInstance()->LoadFromFile(L"Clairvoyance", Resources(L"clairvoyance.bmp"), 50, 52, 1, 1, true);
 	ImageManager::GetInstance()->LoadFromFile(L"InterfaceSkill", Resources(L"interfaceSkill.bmp"),280,70, 4, 1, true);
+	ImageManager::GetInstance()->LoadFromFile(L"Miss", Resources(L"missE.bmp"), 65, 93,1,3, true);
+	ImageManager::GetInstance()->LoadFromFile(L"Stun", Resources(L"stun.bmp"), 170, 21, 5, 1, true);
 
 	mPlayer = new Player();
 	mPlayer->Init();
@@ -163,8 +165,11 @@ void Main::Render(HDC hdc) {
 		}
 
 		InterfaceRender(backDC);
+
+		
 	}
 
 	mBkBuff->Render(hdc, 0, 0);
+
 }
 

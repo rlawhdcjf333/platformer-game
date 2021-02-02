@@ -27,6 +27,8 @@ class WitchCat : public Enemy
 	Status0 mStatus;
 	Location mLocation;
 	vector <GreenShell*> mGreenShellList;
+
+	Image* mStunE;
 public:
 
 	void Init(float X, float Y)override;
