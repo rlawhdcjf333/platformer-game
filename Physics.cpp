@@ -29,12 +29,11 @@ void Physics::IsonthePlatform() {
 
 	if (mPlayer->GetStatus() != Status::laddering and mPlayer->GetStatus() !=Status::rope) {
 		
-		float temp =0; //낙사 트리거용 임시 중력값 저장소
 		//바닥 판정
 		for (RECT elem : mMapList[0]->GetMapList()) {
 			for (int i = mPlayer->GetX() + 22; i < mPlayer->GetX() + 55; i++) {
 				if (PtInRect(&elem, { i, mPlayer->GetRc().bottom - 2 })) {
-					temp = mGravity;
+					mDamage = mGravity;
 					mPlayer->SetonthePlatform(true);
 					mGravity = -0.58f;
 					mPlayer->SetY(elem.top - 93);
@@ -43,7 +42,7 @@ void Physics::IsonthePlatform() {
 			}
 		}
 
-		if (temp > 35) { mPlayer->SetIsDead(true); mPlayer->SetFrameX(0); }
+		if (mDamage > 35) { mPlayer->SetIsDead(true); mPlayer->SetFrameX(0); }
 
 
 		//2단계 미끌바닥 판정
@@ -51,7 +50,7 @@ void Physics::IsonthePlatform() {
 			for (int i = mPlayer->GetX() + 22; i < mPlayer->GetX() + 55; i++) {
 				if (PtInRect(&elem, { i, mPlayer->GetRc().bottom - 2 })) {
 					mPlayer->SetonthePlatform(true);
-					temp = mGravity;
+					mDamage = mGravity;
 					mGravity = -0.58f;
 					mPlayer->SetX(mPlayer->GetX() + 0.07); //0.07 만큼 오른쪽으로 계속 미끄러진다
 					mPlayer->SetY(elem.top - 93);
@@ -60,7 +59,7 @@ void Physics::IsonthePlatform() {
 			}
 		}
 
-		if (temp > 35) { mPlayer->SetIsDead(true); mPlayer->SetFrameX(0); }
+		if (mDamage > 35) { mPlayer->SetIsDead(true); mPlayer->SetFrameX(0); }
 	}
 
 	//투명 바닥 판정

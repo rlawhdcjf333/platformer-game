@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Camera.h"
 #include "Player.h"
+#include "Physics.h"
 
 void Camera::Update()
 {
@@ -15,6 +16,36 @@ void Camera::Update()
 	if (mRc.top < WINSIZEY - 4320) mY = WINSIZEY - 4320;
 
 	mRc = RectMake(mX, mY, mW, mH);
+
+	if (mPlayer->GetonthePlatform() == true and Physics::GetInstance()->GetDamage() > 25) {
+
+		mCameraPanningCount = 0;
+		mCameraPanningOn = true;
+	}
+
+	CameraPanning();
+
+
+
+
+}
+
+void Camera::CameraPanning()
+{
+
+	if (mCameraPanningOn) {
+
+		mCameraPanningCount++;
+		if (mCameraPanningCount > 30) {
+			mCameraPanningCount = 0;
+			mCameraPanningOn = false;
+		}
+
+		mAngle = mCameraPanningCount & 1 ? 0.5*PI : 1.5*PI; //비트연산으로 짝홀 계산을 더욱 빠르게
+		
+		mY -= mVec * sinf(mAngle);
+		mRc = RectMake(mX, mY, mW, mH);
+	}
 
 }
 
