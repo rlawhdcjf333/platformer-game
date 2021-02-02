@@ -15,12 +15,15 @@ class Player :public Unit
 	bool onthePlatform;
 	bool ontheLadder;
 	bool ontheRope;
+	bool IsDead;
 	
 	bool SkillQ;
 	int SkillQTime;
 	bool SkillW;
 	int SkillWTime;
-	bool IsDead;
+
+	int mHP;
+	int mMP;
 
 public:
 
@@ -29,26 +32,30 @@ public:
 	void Update();
 	void Render(HDC hdc, int ResizeX, int ResizeY)override;
 
+	inline int const GetHP() { return mHP; }
+	inline int const GetMP() { return mMP; }
+	inline void SetHP(int hpValue) { mHP = hpValue; }
+	inline void SetMP(int mpValue) { mMP = mpValue; }
+
 	void PlayerInput();
 	void StatusSwitch();
 	inline Status const GetStatus() { return mStatus; }
 	inline void SetStatus(Status StatusX) { mStatus = StatusX; }
 
-	bool GetonthePlatform() { return onthePlatform; }
-	void SetonthePlatform(bool bools) { onthePlatform = bools; }
+	inline bool const GetonthePlatform() { return onthePlatform; }
+	inline void SetonthePlatform(bool bools) { onthePlatform = bools; }
 
-	bool GetontheLadder() { return ontheLadder; }
-	void SetontheLadder(bool bools) { ontheLadder = bools; }
+	inline bool const GetontheLadder() { return ontheLadder; }
+	inline void SetontheLadder(bool bools) { ontheLadder = bools; }
 
-	bool GetontheRope() { return ontheRope; }
-	void SetontheRope(bool bools) { ontheRope = bools; }
-
-	void istheSkill();
+	inline bool const GetontheRope() { return ontheRope; }
+	inline void SetontheRope(bool bools) { ontheRope = bools; }
 
 	Skill* GetSkill() { return mSkill; }
+	void istheSkill();
 
-	void SetIsDead(bool trueOrFalse) { IsDead = trueOrFalse; }
-	bool GetIsDead() { return IsDead; }
+	inline bool const GetIsDead() { return IsDead; }
+	inline void SetIsDead(bool trueOrFalse) { IsDead = trueOrFalse; }
 
 	void DeathAnimation();
 

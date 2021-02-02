@@ -43,9 +43,6 @@ void Physics::IsonthePlatform() {
 			}
 		}
 
-		if (mDamage > 35) { mPlayer->SetIsDead(true); mPlayer->SetFrameX(0); }
-
-
 		//2´Ü°è ¹Ì²ø¹Ù´Ú ÆÇÁ¤
 		for (RECT elem : mMapList[2]->GetMapList()) {
 			for (int i = mPlayer->GetX() + 22; i < mPlayer->GetX() + 55; i++) {
@@ -60,7 +57,8 @@ void Physics::IsonthePlatform() {
 			}
 		}
 
-		if (mDamage > 35) { mPlayer->SetIsDead(true); mPlayer->SetFrameX(0); }
+		if (mDamage > 25) { mPlayer->SetHP(mPlayer->GetHP() - mDamage * 7); }
+		//if (mDamage > 50) { mPlayer->SetIsDead(true); mPlayer->SetFrameX(0); }
 	}
 
 	//Åõ¸í ¹Ù´Ú ÆÇÁ¤
@@ -117,10 +115,9 @@ void Physics::IsonthePlatform() {
 	for (RECT elem : mMapList[3]->GetMapList()) {
 		if (IntersectRect(&temp, &elem, &hitBox)) {
 			mPlayer->SetonthePlatform(false);
-			mGravity = -0.58f;
 			mPlayer->SetVec(15);
 			if (mPlayer->GetStatus() == Status::rightDown or mPlayer->GetStatus() == Status::leftDown) mPlayer->SetVec(5);
-			if (mPlayer->GetX() + 40 > (temp.right + temp.left) / 2) 
+			if (mPlayer->GetX() + 40 > ((float)temp.right + (float)temp.left) / 2) 
 			{ mPlayer->SetAngle(0.2 * PI);  mPlayer->SetStatus(Status::leftJump);}
 			else 
 			{ mPlayer->SetAngle(0.8 * PI); mPlayer->SetStatus(Status::rightJump);}
@@ -134,7 +131,6 @@ void Physics::IsonthePlatform() {
 			if (PtInRect(&elem, { i, mPlayer->GetRc().bottom - 2 })) {
 				mPlayer->SetonthePlatform(false);
 				mPlayer->SetStatus(Status::leftJump);
-				mGravity = -0.58f;
 				mPlayer->SetVec(20);
 				mPlayer->SetAngle(PI * 0.4);
 				break;
@@ -176,7 +172,6 @@ void Physics::IstheHit()
 	for (GreenShell* elem : witchCatPtr->GetGreenShellList()) {
 		RECT hitter = elem->GetRc();
 		if (IntersectRect(&temp, &hitter, &hitBox)) {
-			mGravity = -0.58f;
 			mPlayer->SetVec(10);
 			if (mPlayer->GetStatus() == Status::rightDown or mPlayer->GetStatus() == Status::leftDown) mPlayer->SetVec(3);
 			mPlayer->SetAngle(PI * 0.3);
@@ -189,7 +184,6 @@ void Physics::IstheHit()
 	for (GreenShell* elem : witchCatPtr->GetGreenShellList()) {
 		RECT hitter = elem->GetRc();
 		if (IntersectRect(&temp, &hitter, &hitBox)) {
-			mGravity = -0.58f;
 			mPlayer->SetVec(10);
 			if (mPlayer->GetStatus() == Status::rightDown or mPlayer->GetStatus() == Status::leftDown) mPlayer->SetVec(3);
 			mPlayer->SetAngle(PI * 0.7);
@@ -202,10 +196,10 @@ void Physics::IstheHit()
 	for (BlueShell* elem : yetiAndPepePtr->GetBlueShellList()) {
 		RECT hitter = elem->GetRc();
 		if (IntersectRect(&temp, &hitter, &hitBox)) {
-			mGravity = -0.58f;
-			mPlayer->SetVec(20);
+			mPlayer->SetonthePlatform(false);
+			mPlayer->SetVec(10);
 			if (mPlayer->GetStatus() == Status::rightDown or mPlayer->GetStatus() == Status::leftDown) mPlayer->SetVec(5);
-			mPlayer->SetAngle(PI * 1.2);
+			mPlayer->SetAngle(PI * 0.95);
 			mPlayer->SetStatus(Status::rightJump);
 			break;
 		}
@@ -216,10 +210,9 @@ void Physics::IstheHit()
 	for (RcAndRange& elem : mossSnailPtr->GetSnail()) { //struct ºñ½Î´Ï±î ½Î°Ô °¡Á®¿ÀÀÚ... 
 		RECT hitter = elem.rc;
 		if(IntersectRect(&temp, &hitter, &hitBox)) {
-			mGravity = -0.58f;
 			mPlayer->SetVec(15);
 			if (mPlayer->GetStatus() == Status::rightDown or mPlayer->GetStatus() == Status::leftDown) mPlayer->SetVec(5);
-			if (mPlayer->GetX() + 40 > (temp.right + temp.left) / 2) 
+			if (mPlayer->GetX() + 40 > ((float)temp.right + (float)temp.left) / 2) 
 			{ mPlayer->SetAngle(0.3 * PI);  mPlayer->SetStatus(Status::leftJump);}
 			else 
 			{ mPlayer->SetAngle(0.7 * PI); mPlayer->SetStatus(Status::rightJump);}
@@ -233,7 +226,6 @@ void Physics::IstheHit()
 		if (launcherPtr->GetLauncherList().find(to_string(i))->second != NULL) {
 			RECT hitter = launcherPtr->GetLauncherList().find(to_string(i))->second->GetRc();
 			if (IntersectRect(&temp, &hitter, &hitBox)) {
-				mGravity = -0.58f;
 				mPlayer->SetVec(20);
 				mPlayer->SetAngle(PI * 0.1);
 				mPlayer->SetStatus(Status::leftJump);

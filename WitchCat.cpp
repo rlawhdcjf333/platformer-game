@@ -36,14 +36,13 @@ void WitchCat::Render(HDC hdc)
 	}
 
 	if (mLocation==Location::Left and mStatus == Status0::rightHit) {
-
-		mStunE->ScaleFrameRender(hdc, mX, mY - Camera::GetInstance()->GetY(), mFrameX, 0, 50, 30);
+		mStunE->ScaleFrameRender(hdc, mX+40, mY - Camera::GetInstance()->GetY(), mFrameCount/2%5, 0, 50, 30);
 	}
 
 
 	if (mLocation == Location::Right and mStatus == Status0::leftHit) {
 
-		mStunE->ScaleFrameRender(hdc, mX, mY - Camera::GetInstance()->GetY(), mFrameX, 0, 50, 30);
+		mStunE->ScaleFrameRender(hdc, mX+20, mY - Camera::GetInstance()->GetY(), mFrameCount/2%5, 0, 50, 30);
 	}
 }
 
@@ -128,7 +127,7 @@ void WitchCat::StatusSwitch()
 	case Status0::leftHit:
 		mFrameY = 2;
 		mFrameX = 0;
-		if (mFrameCount > 300) mStatus = Status0::leftIdle;
+		if (mFrameCount > 350) mStatus = Status0::leftIdle;
 		break;
 	case Status0::rightThrow:
 		mFrameY = 3;
@@ -144,7 +143,7 @@ void WitchCat::StatusSwitch()
 	case Status0::rightHit:
 		mFrameY = 5;
 		mFrameX = 0;
-		if (mFrameCount > 300) mStatus = Status0::rightIdle;
+		if (mFrameCount > 350) mStatus = Status0::rightIdle;
 		break;
 
 	}

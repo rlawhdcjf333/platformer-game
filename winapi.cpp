@@ -39,7 +39,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmd
 	WINSTARTX,
 	WINSTARTY,
 	WINSIZEX,
-	WINSIZEY,
+	WINSIZEY+40,
 	NULL,
 	(HMENU)NULL,
 	hInstance,
@@ -49,7 +49,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmd
 	windowRect.left = 0;
 	windowRect.top = 0;
 	windowRect.right = WINSIZEX;
-	windowRect.bottom = WINSIZEY;
+	windowRect.bottom = WINSIZEY+40;
 
 	AdjustWindowRect(&windowRect, WS_OVERLAPPEDWINDOW, false);
 

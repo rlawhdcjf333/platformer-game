@@ -14,6 +14,9 @@ void Player::Init()
 	Unit::Init(L"Player", WINSIZEX/2-40, 500);
 
 	Interface::GetInstance()->SetPlayer(this);
+
+	mHP = 1000;
+	mMP = 1000;
 	mSkill = new Skill();
 	mSkill->SetPlayer(this); 
 	mVec = 0;
@@ -39,7 +42,9 @@ void Player::Update()
 	Physics::GetInstance()->IsonthePlatform(); 
 
 	//죽음과 부활 @ StatusSwitch cpp, Death and Resurrection
-	if (IsDead == true) {
+	if (mHP < 0) { IsDead = true;}
+	if (IsDead) {
+		mHP = 0;
 		DeathAnimation();
 		return;
 	}

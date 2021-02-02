@@ -99,6 +99,7 @@ void Player::DeathAnimation() {
 		IsDead = false; mImage = ImageManager::GetInstance()->FindImage(L"Player");
 		mX = WINSIZEX / 2-40, mY = 500; mRc = RectMake(mX, mY, mW, mH);
 		mStatus = Status::leftIdle; mFrameX = 1; mVec = 0; 
+		mHP = 1000, mMP = 1000;
 		mGrendel = new Grendel();
 		mGrendel->Init(mX-50, mY - 200);
 	}

@@ -21,7 +21,7 @@ void Main::Init() {
 	SetTimer(g_hWnd, 1, 10, NULL);
 
 	mBkBuff = new Image();
-	mBkBuff->CreateEmpty(WINSIZEX, WINSIZEY);
+	mBkBuff->CreateEmpty(WINSIZEX, WINSIZEY+40);
 
 	ImageManager::GetInstance()->LoadFromFile(L"background", Resources(L"background.bmp"), 1280, 4320, false);
 	mBackground = ImageManager::GetInstance()->FindImage(L"background");
@@ -42,6 +42,11 @@ void Main::Init() {
 	ImageManager::GetInstance()->LoadFromFile(L"InterfaceSkill", Resources(L"interfaceSkill.bmp"),280,70, 4, 1, true);
 	ImageManager::GetInstance()->LoadFromFile(L"Miss", Resources(L"missE.bmp"), 65, 93,1,3, true);
 	ImageManager::GetInstance()->LoadFromFile(L"Stun", Resources(L"stun.bmp"), 170, 21, 5, 1, true);
+	ImageManager::GetInstance()->LoadFromFile(L"Interface", Resources(L"interface.bmp"),1280, 40, false);
+	ImageManager::GetInstance()->LoadFromFile(L"HpBar", Resources(L"hpBar.bmp"), 226, 40, true);
+	ImageManager::GetInstance()->LoadFromFile(L"MpBar", Resources(L"mpBar.bmp"), 230, 40, true);
+	ImageManager::GetInstance()->LoadFromFile(L"Numbers", Resources(L"numbers.bmp"), 360, 74, 10, 2,true);
+	ImageManager::GetInstance()->LoadFromFile(L"Caution", Resources(L"caution.bmp"), 120, 120, true);
 
 	mPlayer = new Player();
 	mPlayer->Init();
