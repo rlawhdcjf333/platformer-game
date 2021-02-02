@@ -8,6 +8,8 @@ void WitchCat::Init(float X, float Y)
 {
 	Unit::Init(L"WitchCat", X, Y);
 
+	mStunE = ImageManager::GetInstance()->FindImage(L"Stun");
+
 	mFrameCount = 0;
 	mVec = 0;
 
@@ -31,6 +33,17 @@ void WitchCat::Render(HDC hdc)
 	mImage->ScaleFrameRender(hdc, mRc.left - Camera::GetInstance()->GetX(), mRc.top - Camera::GetInstance()->GetY(), mFrameX, mFrameY, 100, 100);
 	for (GreenShell*& elem : mGreenShellList) {
 		if (elem != NULL) elem->Render(hdc);
+	}
+
+	if (mLocation==Location::Left and mStatus == Status0::rightHit) {
+
+		mStunE->ScaleFrameRender(hdc, mX, mY - Camera::GetInstance()->GetY(), mFrameX, 0, 50, 30);
+	}
+
+
+	if (mLocation == Location::Right and mStatus == Status0::leftHit) {
+
+		mStunE->ScaleFrameRender(hdc, mX, mY - Camera::GetInstance()->GetY(), mFrameX, 0, 50, 30);
 	}
 }
 

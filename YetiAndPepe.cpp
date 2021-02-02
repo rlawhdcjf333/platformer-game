@@ -36,7 +36,7 @@ void YetiAndPepe::Update()
 
 	if (mFrameX == 4 and mFrameY == 1) {
 		if (mFrameCount == 0) {
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < 20; i++) {
 
 				BlueShell* mBlueShell = new BlueShell();
 				mBlueShell->SetXY(930, -1760 - 25);

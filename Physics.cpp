@@ -12,6 +12,7 @@
 #include "MossSnail.h"
 #include "Fanzy.h"
 #include "Launcher.h"
+#include "Interface.h"
 
 void Physics::PhysicsUpdate()
 {
@@ -29,12 +30,11 @@ void Physics::IsonthePlatform() {
 
 	if (mPlayer->GetStatus() != Status::laddering and mPlayer->GetStatus() !=Status::rope) {
 		
-		float temp =0; //낙사 트리거용 임시 중력값 저장소
 		//바닥 판정
 		for (RECT elem : mMapList[0]->GetMapList()) {
 			for (int i = mPlayer->GetX() + 22; i < mPlayer->GetX() + 55; i++) {
 				if (PtInRect(&elem, { i, mPlayer->GetRc().bottom - 2 })) {
-					temp = mGravity;
+					mDamage = mGravity;
 					mPlayer->SetonthePlatform(true);
 					mGravity = -0.58f;
 					mPlayer->SetY(elem.top - 93);
@@ -43,7 +43,7 @@ void Physics::IsonthePlatform() {
 			}
 		}
 
-		if (temp > 35) { mPlayer->SetIsDead(true); mPlayer->SetFrameX(0); }
+		if (mDamage > 35) { mPlayer->SetIsDead(true); mPlayer->SetFrameX(0); }
 
 
 		//2단계 미끌바닥 판정
@@ -51,7 +51,7 @@ void Physics::IsonthePlatform() {
 			for (int i = mPlayer->GetX() + 22; i < mPlayer->GetX() + 55; i++) {
 				if (PtInRect(&elem, { i, mPlayer->GetRc().bottom - 2 })) {
 					mPlayer->SetonthePlatform(true);
-					temp = mGravity;
+					mDamage = mGravity;
 					mGravity = -0.58f;
 					mPlayer->SetX(mPlayer->GetX() + 0.07); //0.07 만큼 오른쪽으로 계속 미끄러진다
 					mPlayer->SetY(elem.top - 93);
@@ -60,7 +60,7 @@ void Physics::IsonthePlatform() {
 			}
 		}
 
-		if (temp > 35) { mPlayer->SetIsDead(true); mPlayer->SetFrameX(0); }
+		if (mDamage > 35) { mPlayer->SetIsDead(true); mPlayer->SetFrameX(0); }
 	}
 
 	//투명 바닥 판정
@@ -162,6 +162,11 @@ void Physics::SetEnemy(vector<Enemy*> enemyPtrList) {
 
 }
 
+RECT Physics::GethitBox()
+{
+	return mhitBox;
+}
+
 void Physics::IstheHit()
 {
 	RECT temp{};
@@ -254,17 +259,19 @@ void Physics::WitchCatHit()
 			hitter = elem1->GetRc();
 			if (IntersectRect(&temp, &hitter, &hitBox)) {
 				
-				WitchCat* witchCatL = (WitchCat*)mEnemyList[0]; //좌냥이 다운캐스팅
-				WitchCat* witchCatR = (WitchCat*)mEnemyList[1]; //우냥이 다운캐스팅
+				WitchCat* witchCatL = (WitchCat*)mEnemyList[0]; //좌냥이 다운캐스팅 LCat downcasting
+				WitchCat* witchCatR = (WitchCat*)mEnemyList[1]; //우냥이 다운캐스팅 RCat downcasting
 
 				switch (elem == mEnemyList[0]) {
 
 				case true:
-					witchCatL->SetStatus(Status0::rightHit);
+					witchCatL->SetStatus(Status0::rightHit); //피격모션 활성 Hit motion activation
+					mPlayer->GetSkill()->EraseRedShellQ(elem1); //투사체 삭제 erase projectile
 					break;
 
 				case false:
 					witchCatR->SetStatus(Status0::leftHit);
+					mPlayer->GetSkill()->EraseRedShellQ(elem1);
 					break;
 				}
 				
@@ -282,7 +289,7 @@ void Physics::DefenseW()
 		RECT defender{};
 		RECT defendee{};
 
-		YetiAndPepe* yetiAndPepePtr = (YetiAndPepe*)mEnemyList[2]; //지금 드는 생각인데 이걸 map으로 했으면 좋았을 것 같다;;;
+		YetiAndPepe* yetiAndPepePtr = (YetiAndPepe*)mEnemyList[2]; //지금 드는 생각인데 Enemy관리를 map으로 했으면 좋았을 것 같다;;;
 		for (BlueShell* elem : yetiAndPepePtr->GetBlueShellList()) {
 			defendee = elem->GetRc();
 			defender = RectMake(mPlayer->GetX()-80, mPlayer->GetY()-80, 240,255);
@@ -301,26 +308,33 @@ void Physics::EraseQ()
 	RECT temp{};
 	RECT hitter{};
 	RECT hitBox{};
-	for (Enemy* elem : mEnemyList) {
-		for (RedShell* elem1 : mPlayer->GetSkill()->GetRedShellListQ()) {
-			hitBox = elem->GetRc();
-			hitter = elem1->GetRc();
-			if (IntersectRect(&temp, &hitBox, &hitter)) {
 
-				if (elem == mEnemyList[0]) { //피격판정을 위한 조정..
-					if(temp.left==hitBox.left)
-						mPlayer->GetSkill()->EraseRedShellQ(elem1);
-				}
 
-				if (elem == mEnemyList[1]) { //이하 동문...
-					if(temp.right==hitBox.right)
-						mPlayer->GetSkill()->EraseRedShellQ(elem1);
-				}
-				if(elem!=mEnemyList[0] and elem!=mEnemyList[1]) //나머지는 피격 되지 않는다 == 피격판정을 위한 조정 필요없음
-				mPlayer->GetSkill()->EraseRedShellQ(elem1);
-			}
+	//예티와페페 피격 YetiAndPepe hit 
+		hitBox = mEnemyList[2]->GetRc();
+	for (RedShell* elem1 : mPlayer->GetSkill()->GetRedShellListQ()) {
+		hitter = elem1->GetRc();
+		if (IntersectRect(&temp, &hitter, &hitBox)) {
+			
+			mPlayer->GetSkill()->EraseRedShellQ(elem1);
+			mhitBox = hitBox;
+			Interface::GetInstance()->SetDamageEffect(true); //데미지 효과 렌더 요청 @ Singleton Interface, Damage effect rendering request
 		}
 	}
 
+	//이끼달팽이 피격 MossSnail hit
+	MossSnail* mossSnailPtr = (MossSnail*)mEnemyList[3];
+	for (RedShell* elem1 : mPlayer->GetSkill()->GetRedShellListQ()) {
+		hitter = elem1->GetRc();
+		for (RcAndRange& elem : mossSnailPtr->GetSnail()) {
+			hitBox = elem.rc;
+			if (IntersectRect(&temp, &hitter, &hitBox)) {
 
+				mPlayer->GetSkill()->EraseRedShellQ(elem1);
+				mhitBox = hitBox;
+				Interface::GetInstance()->SetDamageEffect(true); 
+			}
+
+		}
+	}
 }

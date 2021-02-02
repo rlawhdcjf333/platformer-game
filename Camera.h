@@ -13,7 +13,10 @@ private:
 	float mH = WINSIZEY;
 
 	float mAngle;
-	float mVec;
+	float mVec=5;
+	
+	bool mCameraPanningOn;
+	int mCameraPanningCount;
 
 	RECT mRc;
 	Player* mPlayer;
@@ -22,6 +25,7 @@ public:
 
 	void Init();
 	void Update();
+	void CameraPanning();
 
 	void SetPlayer(Player* playerPtr) { mPlayer = playerPtr; }
 

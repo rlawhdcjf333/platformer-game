@@ -51,5 +51,8 @@ public:
 	bool GetIsDead() { return IsDead; }
 
 	void DeathAnimation();
+
+	int const GetSkillQTime() { return SkillQTime; }
+	int const GetSkillWTime() { return SkillWTime; }
 };
 

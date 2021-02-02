@@ -4,6 +4,8 @@
 
 void Fixed::Init()
 {
+	//...절실하게 맵타일 제작 툴의 필요성을 느끼는 부분;;;
+
 	//맨 밑바닥 렉트
 	mRc = RectMake(0, 705, WINSIZEX, 15);
 	mRcList.push_back(mRc);

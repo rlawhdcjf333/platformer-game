@@ -10,6 +10,8 @@ class Interface {
 
 private:
 	Image* mImage = ImageManager::GetInstance()->FindImage(L"InterfaceSkill");
+	Image* mMiss = ImageManager::GetInstance()->FindImage(L"Miss");
+
 	Player* mPlayer;
 
 	bool mToggleInterface;
@@ -17,6 +19,10 @@ private:
 	float mAlphaW;
 	float mAlphaE;
 	float mAlphaR;
+
+	int mRandFrameY;
+	bool mDamageEffectOn;
+	int mDamageEffectCount;
 
 public:
 	void Update();
@@ -26,5 +32,8 @@ public:
 	bool GetToggleInterface() { return mToggleInterface; }
 
 	void SetPlayer(Player* playerPtr) { mPlayer = playerPtr; }
+
+	void SetDamageEffect(bool torf) { mDamageEffectOn = torf; }
+	void DamageEffectRender(HDC hdc, float x, float y, float W);
 
 };
