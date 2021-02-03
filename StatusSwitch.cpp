@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Status.h"
 #include "Grendel.h"
+#include "Physics.h"
 
 void Player::StatusSwitch()
 {
@@ -100,6 +101,7 @@ void Player::DeathAnimation() {
 		mX = WINSIZEX / 2-40, mY = 500; mRc = RectMake(mX, mY, mW, mH);
 		mStatus = Status::leftIdle; mFrameX = 1; mVec = 0; 
 		mHP = 1000, mMP = 1000;
+		Physics::GetInstance()->SetG(0);
 		mGrendel = new Grendel();
 		mGrendel->Init(mX-50, mY - 200);
 	}

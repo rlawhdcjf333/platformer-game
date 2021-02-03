@@ -2,6 +2,7 @@
 #include "Slippery.h"
 #include "Camera.h"
 #include "Wind.h"
+#include "Player.h"
 
 void Slippery::Init()
 {
@@ -131,6 +132,7 @@ void Slippery::Init()
 		int x = Random::GetInstance()->RandInt(WINSIZEX);
 		int y = -1* Random::GetInstance()->RandInt(850, 2200);
 		Wind* mWind = new Wind();
+		mWind->SetPlayer(mPlayer);
 		mWind->Init(x,y);
 		windList.push_back(mWind);
 	}

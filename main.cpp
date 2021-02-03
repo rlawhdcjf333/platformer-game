@@ -47,7 +47,7 @@ void Main::Init() {
 	ImageManager::GetInstance()->LoadFromFile(L"MpBar", Resources(L"mpBar.bmp"), 230, 40, true);
 	ImageManager::GetInstance()->LoadFromFile(L"Numbers", Resources(L"numbers.bmp"), 360, 74, 10, 2,true);
 	ImageManager::GetInstance()->LoadFromFile(L"Caution", Resources(L"caution.bmp"), 120, 120, true);
-	ImageManager::GetInstance()->LoadFromFile(L"Wind", Resources(L"wind.bmp"), 550 , 140 , 5 , 2 , true);
+	ImageManager::GetInstance()->LoadFromFile(L"Wind", Resources(L"wind2.bmp"), 100 , 68 , 1 , 1 , true);
 
 	mPlayer = new Player();
 	mPlayer->Init();
@@ -92,6 +92,8 @@ void Main::Init() {
 	mMapList.push_back(mMap);
 
 	mMap = new Slippery();
+	Slippery* mSlippery = (Slippery*)mMap;
+	mSlippery->SetPlayer(mPlayer);
 	mMap->Init();
 	mMapList.push_back(mMap);
 
@@ -133,8 +135,8 @@ void Main::Release() {
 }
 
 void Main::Update() {
+	
 	Interface::GetInstance()->Update();
-
 
 	mPlayer->Update();
 	

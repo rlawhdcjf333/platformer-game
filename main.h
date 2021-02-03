@@ -22,7 +22,7 @@ private:
 
 	vector <Projectile*> mProjectileList;
 
-	bool mToggeleMiniMap=true;
+	bool mToggeleMiniMap = true;
 	
 public:
 	void Init();

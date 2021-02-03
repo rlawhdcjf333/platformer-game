@@ -23,6 +23,7 @@ void Main::InterfaceRender(HDC hdc)
 		StretchBlt(hdc, 1170, 20, 80,130, mBkBuff->GetHDC(), 0, 0, 1280,720, SRCCOPY); //미니맵에 인터페이스는 안보이게
 	}
 
+
 	//데미지 인터페이스
 	Interface::GetInstance()->DamageEffectRender(hdc, Physics::GetInstance()->GethitBox().left, Physics::GetInstance()->GethitBox().top,
 		Physics::GetInstance()->GethitBox().right - Physics::GetInstance()->GethitBox().left);
@@ -215,7 +216,7 @@ void Interface::PlayerDamageEffectRender(HDC hdc, int damage)
 
 		float alpha = (51.f - (float)mHpDamageEffectCount) / 51;
 
-		if (damage > 199) {
+		if (damage > 299) {
 			mNumbers->AlphaScaleFrameRender(hdc, x, y, hundreds, 1, 36, 37, alpha);
 			mNumbers->AlphaScaleFrameRender(hdc, x+33, y, tens, 1, 36, 37, alpha);
 			mNumbers->AlphaScaleFrameRender(hdc, x+60,y, ones, 1, 36,37, alpha);

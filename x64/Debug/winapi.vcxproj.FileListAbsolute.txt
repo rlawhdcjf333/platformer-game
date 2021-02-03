@@ -1,2 +1,0 @@
-C:\Users\김종철\Documents\GitHub\platformer-game\x64\Debug\winapi.exe
-C:\Users\김종철\Documents\GitHub\platformer-game\x64\Debug\winapi.pdb
