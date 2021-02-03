@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Slippery.h"
 #include "Camera.h"
+#include "Wind.h"
 
 void Slippery::Init()
 {
@@ -121,47 +122,44 @@ void Slippery::Init()
 	mRcList.push_back(mRc);
 
 	//예티발판
-
-	mRc = RectMake(800, -1440 - 325, 480, 20);
+		mRc = RectMake(800, -1440 - 325, 480, 20);
 	mRcList.push_back(mRc);
+
+	//바람 이펙트
+	for (int i = 0; i < 25; i++) {
+
+		int x = Random::GetInstance()->RandInt(WINSIZEX);
+		int y = -1* Random::GetInstance()->RandInt(850, 2200);
+		Wind* mWind = new Wind();
+		mWind->Init(x,y);
+		windList.push_back(mWind);
+	}
+
 }
 
 void Slippery::Render(HDC hdc)
 {
-	//맵타일 위치 체킹
-	//if (Input::GetInstance()->GetKey(VK_TAB)) {
-	//
-	//	HBRUSH newBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
-	//	HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, newBrush);
-	//	HPEN newPen = CreatePen(PS_DASH, 1, RGB(255, 0, 0));
-	//	HPEN oldPen = (HPEN)SelectObject(hdc, newPen);
-	//	for (RECT elem : mRcList) {
-	//
-	//		Rectangle(hdc, elem.left - Camera::GetInstance()->GetX(), elem.top - Camera::GetInstance()->GetY(),
-	//			elem.right - Camera::GetInstance()->GetX(), elem.bottom - Camera::GetInstance()->GetY());
-	//	}
-	//	SelectObject(hdc, oldPen);
-	//	DeleteObject(newPen);
-	//	SelectObject(hdc, oldBrush);
-	//	DeleteObject(newBrush);
-	//}
-	//else {
-	//	HPEN newPen = CreatePen(PS_DASH, 1, RGB(255, 0, 0));
-	//	HPEN oldPen = (HPEN)SelectObject(hdc, newPen);
-	//	for (RECT elem : mRcList) {
-	//
-	//		Rectangle(hdc, elem.left - Camera::GetInstance()->GetX(), elem.top - Camera::GetInstance()->GetY(),
-	//			elem.right - Camera::GetInstance()->GetX(), elem.bottom - Camera::GetInstance()->GetY());
-	//	}
-	//	SelectObject(hdc, oldPen);
-	//	DeleteObject(newPen);
-	//}
+	
+	for (Wind* elem : windList) {
+
+		elem->Render(hdc);
+	}
+
 }
 
 void Slippery::Release()
 {
+	for (Wind*& elem : windList) {
+
+		SafeDelete(elem);
+	}
+
 }
 
 void Slippery::Update()
 {
+	for (Wind* elem : windList) {
+		
+		elem->Update();
+	}
 }

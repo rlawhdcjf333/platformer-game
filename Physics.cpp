@@ -2,11 +2,11 @@
 #include "Physics.h"
 #include "Player.h"
 #include "Skill.h"
-#include "RedShell.h"
 #include "Map.h"
 #include "Enemy.h"
 #include "GreenShell.h"
 #include "BlueShell.h"
+#include "RedShell.h"
 #include "WitchCat.h"
 #include "YetiAndPepe.h"
 #include "MossSnail.h"
@@ -30,7 +30,7 @@ void Physics::IsonthePlatform() {
 
 	if (mPlayer->GetStatus() != Status::laddering and mPlayer->GetStatus() !=Status::rope) {
 		
-		//바닥 판정
+		//바닥 판정 Fixed plats 
 		for (RECT elem : mMapList[0]->GetMapList()) {
 			for (int i = mPlayer->GetX() + 22; i < mPlayer->GetX() + 55; i++) {
 				if (PtInRect(&elem, { i, mPlayer->GetRc().bottom - 2 })) {
@@ -43,7 +43,7 @@ void Physics::IsonthePlatform() {
 			}
 		}
 
-		//2단계 미끌바닥 판정
+		//2단계 미끌바닥 판정 Level 2 slippery plats
 		for (RECT elem : mMapList[2]->GetMapList()) {
 			for (int i = mPlayer->GetX() + 22; i < mPlayer->GetX() + 55; i++) {
 				if (PtInRect(&elem, { i, mPlayer->GetRc().bottom - 2 })) {
@@ -57,20 +57,18 @@ void Physics::IsonthePlatform() {
 			}
 		}
 
-		if (mDamage > 25) { mPlayer->SetHP(mPlayer->GetHP() - mDamage * 7); }
-		//if (mDamage > 50) { mPlayer->SetIsDead(true); mPlayer->SetFrameX(0); }
+		if (mDamage > 25) { mGravity = 0; mPlayer->SetHP(mPlayer->GetHP() - mDamage * 7); }
 	}
 
-	//투명 바닥 판정
+	//투명 바닥 판정 Invisible plats
 	Fanzy* fanzyPtr = (Fanzy*)mEnemyList[4]; //투명냥이 팬지 다운 캐스팅
-	if (fanzyPtr->GetInvisibility() == true) { //비록 변수로 읽으면 투명함 트루(...왜그랬지)이지만 프로그래밍상 반대의 의미
-
+	if (fanzyPtr->GetInvisibility() == true) { 
 		for (RECT elem : fanzyPtr->GetRcList()) {
 			for (int i = mPlayer->GetX() + 22; i < mPlayer->GetX() + 55; i++) {
 				if (PtInRect(&elem, { i, mPlayer->GetRc().bottom - 2 })) {
 					mPlayer->SetonthePlatform(true);
 					mGravity = -0.58f;
-					mPlayer->SetY(elem.top - 91); //작은 픽셀 차 (이미지 렌더)때문에 얘는 2픽셀 덜 빼준다...
+					mPlayer->SetY(elem.top - 91); 
 					break;
 				}
 			}
@@ -78,7 +76,7 @@ void Physics::IsonthePlatform() {
 
 	}
 
-	//로프 판정
+	//로프 판정 Ropes
 	for (RECT elem : {mMapList[1]->GetMapList()[0], mMapList[1]->GetMapList()[1]}) {
 		for (int i = mPlayer->GetX() + 22; i < mPlayer->GetX() + 55; i++) {
 			if (PtInRect(&elem, { i, mPlayer->GetRc().bottom - 2 })) {
@@ -93,7 +91,7 @@ void Physics::IsonthePlatform() {
 		}
 	}
 
-	//사다리 판정
+	//사다리 판정 Ladders
 	for (RECT elem : {mMapList[1]->GetMapList()[2]}) {
 		for (int i = mPlayer->GetX() + 22; i < mPlayer->GetX() + 55; i++) {
 			if (PtInRect(&elem, { i, mPlayer->GetRc().bottom - 2 })) {
@@ -109,7 +107,7 @@ void Physics::IsonthePlatform() {
 		}
 	}
 
-	//1단계 무빙쉘 판정
+	//1단계 무빙쉘 판정 Moving Shells
 	RECT temp{};
 	RECT hitBox = { mPlayer->GetRc().left + 22, mPlayer->GetRc().top, mPlayer->GetRc().left + 55,mPlayer->GetRc().bottom };
 	for (RECT elem : mMapList[3]->GetMapList()) {
@@ -125,7 +123,7 @@ void Physics::IsonthePlatform() {
 		}
 	}
 
-	//깨시 판정
+	//깨시 판정 Thorns
 	for (RECT elem : mMapList[4]->GetMapList()) {
 		for (int i = mPlayer->GetX() + 22; i < mPlayer->GetX() + 55; i++) {
 			if (PtInRect(&elem, { i, mPlayer->GetRc().bottom - 2 })) {
@@ -197,7 +195,7 @@ void Physics::IstheHit()
 		RECT hitter = elem->GetRc();
 		if (IntersectRect(&temp, &hitter, &hitBox)) {
 			mPlayer->SetonthePlatform(false);
-			mPlayer->SetVec(10);
+			mPlayer->SetVec(15);
 			if (mPlayer->GetStatus() == Status::rightDown or mPlayer->GetStatus() == Status::leftDown) mPlayer->SetVec(5);
 			mPlayer->SetAngle(PI * 0.95);
 			mPlayer->SetStatus(Status::rightJump);
@@ -276,7 +274,7 @@ void Physics::WitchCatHit()
 
 void Physics::DefenseW()
 {
-	if (mPlayer->GetSkill()->GetRedShellListW().size() > 0) {
+	if (mPlayer->GetSkill()->GetRedShellListW().size() > 0) { //W 스킬의 달팽이 껍질이 하나라도 존재할 때만
 		RECT temp{};
 		RECT defender{};
 		RECT defendee{};

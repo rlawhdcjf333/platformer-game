@@ -47,6 +47,7 @@ void Main::Init() {
 	ImageManager::GetInstance()->LoadFromFile(L"MpBar", Resources(L"mpBar.bmp"), 230, 40, true);
 	ImageManager::GetInstance()->LoadFromFile(L"Numbers", Resources(L"numbers.bmp"), 360, 74, 10, 2,true);
 	ImageManager::GetInstance()->LoadFromFile(L"Caution", Resources(L"caution.bmp"), 120, 120, true);
+	ImageManager::GetInstance()->LoadFromFile(L"Wind", Resources(L"wind.bmp"), 550 , 140 , 5 , 2 , true);
 
 	mPlayer = new Player();
 	mPlayer->Init();
@@ -75,6 +76,8 @@ void Main::Init() {
 	mEnemyList.push_back(mEnemy);
 
 	mEnemy = new Fanzy();
+	Fanzy* temp = (Fanzy*)mEnemy; //임시 다운캐스팅
+	temp->SetPlayer(mPlayer);
 	mEnemy->Init(0,0);
 	mEnemyList.push_back(mEnemy);
 
@@ -132,15 +135,15 @@ void Main::Release() {
 void Main::Update() {
 	Interface::GetInstance()->Update();
 
-	for (Enemy* elem : mEnemyList) {
-		
-		elem->Update();
-	}
 
 	mPlayer->Update();
 	
 	Camera::GetInstance()->Update();
 
+	for (Enemy* elem : mEnemyList) {
+		
+		elem->Update();
+	}
 	for (Map* elem : mMapList) {
 
 		elem->Update();
@@ -165,7 +168,7 @@ void Main::Render(HDC hdc) {
 		}
 
 		for (Map* elem : mMapList) {
-			if (elem->GetY() > Camera::GetInstance()->GetY() and elem->GetY() < Camera::GetInstance()->GetY() + 720)
+			//if (elem->GetY() > Camera::GetInstance()->GetY() and elem->GetY() < Camera::GetInstance()->GetY() + 720)
 			elem->Render(backDC);
 		}
 

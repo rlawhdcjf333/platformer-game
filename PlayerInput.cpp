@@ -19,21 +19,21 @@ void Player::PlayerInput() {
 		}
 		if (mStatus == Status::leftWalk and Input::GetInstance()->GetKeyU(VK_LEFT)) { mStatus = Status::leftIdle; mVec = 0; }
 
-		if (Input::GetInstance()->GetKeyD(VK_SPACE)) {
+		if (Input::GetInstance()->GetKeyD(VK_CONTROL)) { //원래는 SPACE키였지만 망할 고스트 키때문에 컨트롤로 변경;
 
 			if (mStatus == Status::rightIdle) { mStatus = Status::rightJump, mVec = 10, mAngle = PI * 0.5; onthePlatform = false; }
 			if (mStatus == Status::leftIdle) { mStatus = Status::leftJump;  mVec = 10; mAngle = PI * 0.5; onthePlatform = false; }
-			if (Input::GetInstance()->GetKey(VK_RIGHT)) { mStatus = Status::rightJump, mVec = 10, mAngle = PI * 0.35; onthePlatform = false; }
-			if (Input::GetInstance()->GetKey(VK_LEFT)) { mStatus = Status::leftJump, mVec = 10, mAngle = PI * 0.65; onthePlatform = false; }
+			if (mStatus==Status::rightWalk) { mStatus = Status::rightJump, mVec = 10, mAngle = PI * 0.35; onthePlatform = false; }
+			if (mStatus==Status::leftWalk) { mStatus = Status::leftJump, mVec = 10, mAngle = PI * 0.65; onthePlatform = false; }
 		}
 		//엎드려 getting down
 		if (Input::GetInstance()->GetKey(VK_DOWN)) {
 			if (mStatus == Status::rightWalk or mStatus == Status::rightIdle) { mStatus = Status::rightDown; mVec = 0; }
 			if (mStatus == Status::leftWalk or mStatus == Status::leftIdle) { mStatus = Status::leftDown; mVec = 0; }
 			// 낙하 falling down
-			if (mStatus == Status::rightDown and Input::GetInstance()->GetKey(VK_SPACE))
+			if (mStatus == Status::rightDown and Input::GetInstance()->GetKey(VK_CONTROL))
 			{mY += 21; onthePlatform = false; mStatus = Status::rightJump;}
-			if (mStatus == Status::leftDown and Input::GetInstance()->GetKey(VK_SPACE))
+			if (mStatus == Status::leftDown and Input::GetInstance()->GetKey(VK_CONTROL))
 			{mY += 21; onthePlatform = false; mStatus = Status::leftJump;}
 		}
 		// 엎드려 기상 getting up
@@ -55,7 +55,7 @@ void Player::PlayerInput() {
 		if (Input::GetInstance()->GetKey(VK_DOWN)) { mY++; }
 		if (Input::GetInstance()->GetKeyU(VK_DOWN)) { mVec = 0; mFrameX = 0; }
 		//사다리 점프 jump while laddering
-		if (Input::GetInstance()->GetKeyD(VK_SPACE)) {
+		if (Input::GetInstance()->GetKeyD(VK_CONTROL)) {
 			if (Input::GetInstance()->GetKey(VK_RIGHT)) { mStatus = Status::rightJump, mVec = 10, mAngle = PI * 0.35; ontheLadder = false; }
 			if (Input::GetInstance()->GetKey(VK_LEFT)) { mStatus = Status::leftJump, mVec = 10, mAngle = PI * 0.65; ontheLadder = false; }
 		}
@@ -73,7 +73,7 @@ void Player::PlayerInput() {
 		if (Input::GetInstance()->GetKey(VK_DOWN)) { mY++; }
 		if (Input::GetInstance()->GetKeyU(VK_DOWN)) { mVec = 0; mFrameX = 0; }
 		//로프 중 점프 jump from a rope
-		if (Input::GetInstance()->GetKeyD(VK_SPACE)) {
+		if (Input::GetInstance()->GetKeyD(VK_CONTROL)) {
 			if (Input::GetInstance()->GetKey(VK_RIGHT)) { mStatus = Status::rightJump, mVec = 10, mAngle = PI * 0.35; ontheLadder = false; }
 			if (Input::GetInstance()->GetKey(VK_LEFT)) { mStatus = Status::leftJump, mVec = 10, mAngle = PI * 0.65; ontheLadder = false; }
 		}

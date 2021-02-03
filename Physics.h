@@ -10,7 +10,7 @@ class Physics
 	Singleton(Physics) //모든 충돌처리는 Physics 싱글턴이 처리한다
 
 	float mGravity;
-	float mDamage; //이건 낙하데미지임 실상 바닥 충돌 순간의 중력가속
+	float mDamage; //이건 낙하데미지임 실상 바닥 충돌 순간의 중력가속 Fall damage, A_g
 
 	RECT mhitBox;
 	

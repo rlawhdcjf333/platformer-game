@@ -1,6 +1,7 @@
 #include "Fanzy.h"
 #include "Image.h"
 #include "Camera.h"
+#include "Player.h"
 
 void Fanzy::Init(float X, float Y)
 {
@@ -47,7 +48,8 @@ void Fanzy::Update()
 	if (mFrameX > 12) mFrameX = 0;
 
 	//팬지 투시 발동 Fanzy clairvoyance activation
-	if (Input::GetInstance()->GetKey('E')) {
+	if (Input::GetInstance()->GetKey('E') and mPlayer->GetMP()>0) {
+		mPlayer->SetMP(mPlayer->GetMP() - 1);
 		if (mFrameX > 6) mInvisibility = true;
 		else mInvisibility = false;
 	}

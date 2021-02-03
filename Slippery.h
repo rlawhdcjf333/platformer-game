@@ -1,9 +1,10 @@
 #pragma once
 #include "Map.h"
 
+class Wind;
 class Slippery :public Map
 {
-
+	vector <Wind*> windList;
 
 public:
 	void Init()override;

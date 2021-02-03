@@ -18,8 +18,9 @@ private:
 	Image* mNumbers = ImageManager::GetInstance()->FindImage(L"Numbers");
 
 	Player* mPlayer;
+	int mLevel;
 
-	bool mToggleInterface;
+	bool mToggleInterface=true;
 	float mAlphaQ;
 	float mAlphaW;
 	float mAlphaE;

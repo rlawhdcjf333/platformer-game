@@ -160,6 +160,7 @@
     <ClInclude Include="Skill.h" />
     <ClInclude Include="Slippery.h" />
     <ClInclude Include="Thorn.h" />
+    <ClInclude Include="Wind.h" />
     <ClInclude Include="WitchCat.h" />
     <ClInclude Include="figure.h" />
     <ClInclude Include="Fixed.h" />
@@ -201,6 +202,7 @@
     <ClCompile Include="Skill.cpp" />
     <ClCompile Include="Slippery.cpp" />
     <ClCompile Include="Thorn.cpp" />
+    <ClCompile Include="Wind.cpp" />
     <ClCompile Include="WitchCat.cpp" />
     <ClCompile Include="Fixed.cpp" />
     <ClCompile Include="Image.cpp" />

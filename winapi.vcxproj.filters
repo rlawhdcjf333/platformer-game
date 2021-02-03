@@ -109,6 +109,9 @@
     <Filter Include="main\Interface">
       <UniqueIdentifier>{62e954c1-bc8a-4d76-ae40-d8927cf7248f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="main\Object\Map\Wind">
+      <UniqueIdentifier>{015c4321-9203-4e7e-b692-4751d583b3d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -228,6 +231,9 @@
     <ClInclude Include="Interface.h">
       <Filter>main\Interface</Filter>
     </ClInclude>
+    <ClInclude Include="Wind.h">
+      <Filter>main\Object\Map\Wind</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winapi.cpp">
@@ -337,6 +343,9 @@
     </ClCompile>
     <ClCompile Include="Interface.cpp">
       <Filter>main\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Wind.cpp">
+      <Filter>main\Object\Map\Wind</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

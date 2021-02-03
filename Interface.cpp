@@ -34,6 +34,9 @@ void Main::InterfaceRender(HDC hdc)
 
 void Interface::Update()
 {
+	if (mPlayer->GetY() < -720) mLevel = 2;
+	else mLevel = 1;
+	if (mPlayer->GetY() < -720-1440) mLevel = 3;
 
 	if (Input::GetInstance()->GetKeyD('S')) { mToggleInterface = !mToggleInterface; }
 
@@ -51,7 +54,7 @@ void Interface::Update()
 	}
 	else mAlphaW = 0.7f;
 
-	if (Input::GetInstance()->GetKey('E')) {
+	if (Input::GetInstance()->GetKey('E') and mPlayer->GetMP()>0) {
 		if (mAlphaE > 0.9f) mAlphaE = 0.3f;
 		mAlphaE += 0.01f;
 	}
@@ -113,7 +116,7 @@ void Interface::Render(HDC hdc)
 		DeleteObject(newFont);
 	}
 
-	if (Input::GetInstance()->GetKey('E')) { //스킬 E 활성 체커 Skill E activation checker
+	if (Input::GetInstance()->GetKey('E') and mPlayer->GetMP()>0) { //스킬 E 활성 체커 Skill E activation checker
 
 		mImage->AlphaScaleFrameRender(hdc, 1080, 10, 2, 0, 50,50, mAlphaE);
 	}
@@ -140,7 +143,7 @@ void Interface::Render(HDC hdc)
 
 		//마나
 		float mp = (float)mPlayer->GetMP() / 1000;
-		mMpBar->ScaleRender(hdc, 672, 719, mp * 230, 40);
+		mMpBar->ScaleRender(hdc, 675, 720, mp * 226, 40);
 
 		wstring mpint = to_wstring(mPlayer->GetMP()) + L" / 1000";
 		RECT rc1 = RectMake(680, 723, 220, 20);
@@ -148,7 +151,15 @@ void Interface::Render(HDC hdc)
 
 		SelectObject(hdc, oldFont);
 		DeleteObject(newFont);
-	
+		
+		wstring level = to_wstring(mLevel); //레벨 인터페이스 렌더 Level UI render
+		SetTextColor(hdc, RGB(179,153,0));
+		newFont = CreateFontW(20, 0, 0, 0, FW_EXTRABOLD, 0, 0, 0, DEFAULT_CHARSET, 0, 0, ANTIALIASED_QUALITY, DEFAULT_PITCH | FF_DONTCARE, _T("Fixedsys"));
+		oldFont = (HFONT)SelectObject(hdc, newFont);
+		RECT levelRc = RectMake(70, 730, 20, 20);
+		DrawTextW(hdc, level.c_str(), level.size(), &levelRc, DT_CENTER and DT_VCENTER);
+		SelectObject(hdc, oldFont);
+		DeleteObject(newFont);
 	}
 	
 	//플레이어 데미지 이펙트
@@ -210,8 +221,8 @@ void Interface::PlayerDamageEffectRender(HDC hdc, int damage)
 			mNumbers->AlphaScaleFrameRender(hdc, x+60,y, ones, 1, 36,37, alpha);
 		}
 		else {
-			mNumbers->AlphaScaleFrameRender(hdc, x, y, hundreds,  0, 36, 37, alpha);
-			mNumbers->AlphaScaleFrameRender(hdc, x + 33, y, tens, 0, 36, 37, alpha);
+			if (damage > 99) mNumbers->AlphaScaleFrameRender(hdc, x, y, hundreds, 0, 36, 37, alpha);
+			if (damage > 9)  mNumbers->AlphaScaleFrameRender(hdc, x + 33, y, tens, 0, 36, 37, alpha);
 			mNumbers->AlphaScaleFrameRender(hdc, x + 60, y, ones, 0, 36, 37, alpha);
 		}
 	}

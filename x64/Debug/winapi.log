@@ -1,28 +1,12 @@
-﻿  Physics.cpp
+﻿  PlayerInput.cpp
 C:\Users\김종철\Documents\GitHub\platformer-game\figure.h(3,47): warning C4244: 'return': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(35,15): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(40,29): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(48,15): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(53,36): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(54,29): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(60,55): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(69,15): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(73,29): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(83,14): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(89,30): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(98,14): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(104,29): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(121,32): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(123,32): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(130,14): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(135,31): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(177,30): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(189,30): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(202,30): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(216,32): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(218,32): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(230,31): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(257,36): warning C4145: '==': 관계식을 switch 식으로 사용했습니다. '='과(와) 혼동할 수 있습니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(287,59): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\김종철\Documents\GitHub\platformer-game\Physics.cpp(287,39): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\김종철\Documents\GitHub\platformer-game\PlayerInput.cpp(18,53): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\김종철\Documents\GitHub\platformer-game\PlayerInput.cpp(24,97): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\김종철\Documents\GitHub\platformer-game\PlayerInput.cpp(25,96): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\김종철\Documents\GitHub\platformer-game\PlayerInput.cpp(26,96): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\김종철\Documents\GitHub\platformer-game\PlayerInput.cpp(27,94): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\김종철\Documents\GitHub\platformer-game\PlayerInput.cpp(59,108): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\김종철\Documents\GitHub\platformer-game\PlayerInput.cpp(60,106): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\김종철\Documents\GitHub\platformer-game\PlayerInput.cpp(77,108): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\김종철\Documents\GitHub\platformer-game\PlayerInput.cpp(78,106): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
   winapi.vcxproj -> C:\Users\김종철\Documents\GitHub\platformer-game\x64\Debug\winapi.exe

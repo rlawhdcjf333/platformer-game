@@ -4,7 +4,6 @@
 
 class Map : public Object
 {
-	Singleton(Map)
 
 protected:
 	
