@@ -13,7 +13,6 @@
 #include "Slippery.h"
 #include "Thorn.h"
 #include "Launcher.h"
-#include "Aim.h"
 #include "Interface.h"
 
 void Main::Init() {
@@ -54,8 +53,6 @@ void Main::Init() {
 
 	Camera::GetInstance()->SetPlayer(mPlayer);
 	Camera::GetInstance()->Init();
-
-	Aim::GetInstance()->Init(mPlayer);
 
 	Physics::GetInstance()->SetPlayer(mPlayer);
 
@@ -162,21 +159,18 @@ void Main::Render(HDC hdc) {
 
 		mBackground->Render(backDC, 0 - Camera::GetInstance()->GetX(), 720-4320-Camera::GetInstance()->GetY());
 		
-		mPlayer->Render(backDC,80,95);
+		mPlayer->Render(backDC,80,95); //클리핑 조건 Unit에서 알아서 상속
 
 		for (Enemy* elem : mEnemyList) {
-			if(elem->GetY()>Camera::GetInstance()->GetY() and elem->GetY()<Camera::GetInstance()->GetY()+720)
+			if(elem->GetY()>Camera::GetInstance()->GetY() and elem->GetY()<Camera::GetInstance()->GetY()+720) //에너미마다 렌더가 오버라이딩 되어있음.
 			elem->Render(backDC);
 		}
 
 		for (Map* elem : mMapList) {
-			//if (elem->GetY() > Camera::GetInstance()->GetY() and elem->GetY() < Camera::GetInstance()->GetY() + 720)
-			elem->Render(backDC);
+			elem->Render(backDC); //이 부분 클리핑은 실제 렌더가 돌아가는 wind 클래스에서 별도로 설정
 		}
 
 		InterfaceRender(backDC);
-
-		
 	}
 
 	mBkBuff->Render(hdc, 0, 0);

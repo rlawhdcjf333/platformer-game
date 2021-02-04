@@ -32,12 +32,12 @@ void Physics::IsonthePlatform() {
 		
 		//바닥 판정 Fixed plats 
 		for (RECT elem : mMapList[0]->GetMapList()) {
-			for (int i = mPlayer->GetX() + 22; i < mPlayer->GetX() + 55; i++) {
-				if (PtInRect(&elem, { i, mPlayer->GetRc().bottom - 2 })) {
-					mDamage = mGravity;
-					mPlayer->SetonthePlatform(true);
-					mGravity = -0.58f;
-					mPlayer->SetY(elem.top - 93);
+			for (int i = mPlayer->GetX() + 22; i < mPlayer->GetX() + 55; i++) { //발 밑 가로 길이 33 픽셀
+				if (PtInRect(&elem, { i, mPlayer->GetRc().bottom - 2 })) { //이미지 렉트 바닥으로부터 2픽셀 위
+					mDamage = mGravity; //충돌 순간 중력값 == 낙하 피해량
+					mPlayer->SetonthePlatform(true); //플레이어 상태 갱신
+					mGravity = -0.58f; //중력 초기화
+					mPlayer->SetY(elem.top - 93); //플레이어 위치 보정
 					break;
 				}
 			}
@@ -47,8 +47,8 @@ void Physics::IsonthePlatform() {
 		for (RECT elem : mMapList[2]->GetMapList()) {
 			for (int i = mPlayer->GetX() + 22; i < mPlayer->GetX() + 55; i++) {
 				if (PtInRect(&elem, { i, mPlayer->GetRc().bottom - 2 })) {
-					mPlayer->SetonthePlatform(true);
 					mDamage = mGravity;
+					mPlayer->SetonthePlatform(true);
 					mGravity = -0.58f;
 					mPlayer->SetX(mPlayer->GetX() + 0.07); //0.07 만큼 오른쪽으로 계속 미끄러진다
 					mPlayer->SetY(elem.top - 93);
@@ -57,7 +57,7 @@ void Physics::IsonthePlatform() {
 			}
 		}
 
-		if (mDamage > 25) { mGravity = 0; mPlayer->SetHP(mPlayer->GetHP() - mDamage * 7); }
+		if (mDamage > 25) { mGravity = 0; mPlayer->SetHP(mPlayer->GetHP() - mDamage * 7); } //낙하 피해량 25초과에서 실제 낙하 데미지(데미지 계수 7) 구현
 	}
 
 	//투명 바닥 판정 Invisible plats
@@ -171,7 +171,7 @@ void Physics::IstheHit()
 		RECT hitter = elem->GetRc();
 		if (IntersectRect(&temp, &hitter, &hitBox)) {
 			mPlayer->SetVec(10);
-			if (mPlayer->GetStatus() == Status::rightDown or mPlayer->GetStatus() == Status::leftDown) mPlayer->SetVec(3);
+			if (mPlayer->GetStatus() == Status::rightDown or mPlayer->GetStatus() == Status::leftDown) mPlayer->SetVec(3); //엎드린 상태에서 맞으면 덜 밀리게
 			mPlayer->SetAngle(PI * 0.3);
 			mPlayer->SetStatus(Status::leftJump);
 			break;
@@ -249,19 +249,19 @@ void Physics::WitchCatHit()
 			hitter = elem1->GetRc();
 			if (IntersectRect(&temp, &hitter, &hitBox)) {
 				
-				WitchCat* witchCatL = (WitchCat*)mEnemyList[0]; //좌냥이 다운캐스팅 LCat downcasting
-				WitchCat* witchCatR = (WitchCat*)mEnemyList[1]; //우냥이 다운캐스팅 RCat downcasting
+				WitchCat* witchCatL = (WitchCat*)mEnemyList[0]; //좌냥이 다운캐스팅 LCat downcasting from enemy
+				WitchCat* witchCatR = (WitchCat*)mEnemyList[1]; //우냥이 다운캐스팅 RCat downcasting from enemy
 
 				switch (elem == mEnemyList[0]) {
 
 				case true:
-					witchCatL->SetStatus(Status0::rightHit); //피격모션 활성 Hit motion activation
+					witchCatL->SetStatus(Status0::rightHit); //좌냥이 피격모션 활성 Hit motion activation
 					mPlayer->GetSkill()->EraseRedShellQ(elem1); //투사체 삭제 erase projectile
 					break;
 
 				case false:
-					witchCatR->SetStatus(Status0::leftHit);
-					mPlayer->GetSkill()->EraseRedShellQ(elem1);
+					witchCatR->SetStatus(Status0::leftHit); //우냥이 피격모션 활성
+					mPlayer->GetSkill()->EraseRedShellQ(elem1); // 투사체 삭제
 					break;
 				}
 				
@@ -313,7 +313,7 @@ void Physics::EraseQ()
 	}
 
 	//이끼달팽이 피격 MossSnail hit
-	MossSnail* mossSnailPtr = (MossSnail*)mEnemyList[3];
+	MossSnail* mossSnailPtr = (MossSnail*)mEnemyList[3]; //에너미 포인터를 이끼 달팽이 포인터로 다운캐스팅
 	for (RedShell* elem1 : mPlayer->GetSkill()->GetRedShellListQ()) {
 		hitter = elem1->GetRc();
 		for (RcAndRange& elem : mossSnailPtr->GetSnail()) {

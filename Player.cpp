@@ -12,7 +12,7 @@ void Player::Init()
 {
 
 	Unit::Init(L"Player", WINSIZEX/2-40, 500);
-
+	Aim::GetInstance()->Init(this);
 	Interface::GetInstance()->SetPlayer(this);
 
 	mHP = 1000;

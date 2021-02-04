@@ -15,24 +15,6 @@ void Launcher::Init()
 
 }
 
-void Launcher::Render(HDC hdc)
-{
-	map <string, BlueShell*>::iterator iter = mLauncherList.begin();
-	for (;iter != mLauncherList.end(); iter++) {
-		if(iter->second!=NULL)
-		iter->second->Render(hdc);
-	}
-}
-
-void Launcher::Release()
-{
-	map <string, BlueShell*>::iterator iter = mLauncherList.begin();
-	for (;iter != mLauncherList.end(); iter++) {
-
-		SafeDelete(iter->second)
-	}
-}
-
 void Launcher::Update()
 {
 	map <string, BlueShell*>::iterator iter = mLauncherList.begin();
@@ -99,4 +81,21 @@ void Launcher::Update()
 	}
 
 
+}
+void Launcher::Render(HDC hdc)
+{
+	map <string, BlueShell*>::iterator iter = mLauncherList.begin();
+	for (;iter != mLauncherList.end(); iter++) {
+		if (iter->second != NULL)
+			iter->second->Render(hdc);
+	}
+}
+
+void Launcher::Release()
+{
+	map <string, BlueShell*>::iterator iter = mLauncherList.begin();
+	for (;iter != mLauncherList.end(); iter++) {
+
+		SafeDelete(iter->second)
+	}
 }

@@ -20,8 +20,6 @@ private:
 
 	vector<Map*> mMapList;
 
-	vector <Projectile*> mProjectileList;
-
 	bool mToggeleMiniMap = true;
 	
 public:

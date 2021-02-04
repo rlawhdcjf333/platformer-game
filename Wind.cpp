@@ -11,44 +11,33 @@ void Wind::Init(float x, float y)
 	mW = mImage->GetFrameWidth();
 	mH = mImage->GetFrameHeight();
 
-
-
 	mFrameX = 0;
 	mFrameY = 0;
 	mAlpha = 0;
 
-
 	mRc = RectMake(mX, mY, mW, mH);
-
 }
 
 void Wind::Update()
 {
 	mX +=1;
-	mY -= 3*sin(2*PI*mX/200);
+	mY -= 3*sin(2*PI*mX/200); //파동 진폭 300, 주기 2초 (1초가 100프레임)
 
 	RotationMatrix();
 
 	if (mX > WINSIZEX) { mX = -mW; mY = -1 * Random::GetInstance()->RandInt(850, 2200); }
 
-	if (mAlpha > 0.8f) mAlpha = 0.1;
+	if (mAlpha > 0.8f) mAlpha = 0.1; //깜빡거리게 알파값 조정
 
 	mFrameCount++;
-	if (mFrameCount > 5) { mFrameCount = 0; mFrameX++, mAlpha += 0.035f; }
+	if (mFrameCount > 5) { mFrameCount = 0; mFrameX++, mAlpha += 0.035f; } 
 	
-	if (mFrameX > mImage->GetFrameX()-1) { mFrameX = 0, mFrameY++; }
-	if (mFrameY > mImage->GetFrameY()-1) { mFrameY = 0; }
+	if (mFrameX > mImage->GetFrameX()-1) { mFrameX = 0, mFrameY++; } 
+	if (mFrameY > mImage->GetFrameY()-1) { mFrameY = 0; } 
 
 }
 
-void Wind::Render(HDC hdc)
-{
-	if(mY>Camera::GetInstance()->GetY() and mY<Camera::GetInstance()->GetY()+720) //개별 클리핑
-	mImage->AlphaScaleFrameRender(hdc, mX, mY - Camera::GetInstance()->GetY(), mFrameX, mFrameY, 165, 105, mAlpha);
-
-}
-
-void Wind::RotationMatrix() //2차원 좌표계 회전 변환 2-D coordinates rotation transform
+void Wind::RotationMatrix() //2차원 좌표계 회전 보정 2-D coordinates rotation 
 {
 	if (mPlayer->GetY() < -850 and mPlayer->GetY() > -2200) {
 		float Angle = Math::GetAngle(mX, mY, mPlayer->GetX(), mPlayer->GetY());
@@ -57,4 +46,11 @@ void Wind::RotationMatrix() //2차원 좌표계 회전 변환 2-D coordinates rotation tr
 		if(mPlayer->GetX()>mX)
 		mX += 1.2 * cosf(Angle);
 	}
+}
+
+void Wind::Render(HDC hdc)
+{
+	if(mY>Camera::GetInstance()->GetY() and mY<Camera::GetInstance()->GetY()+720) //개별 클리핑
+	mImage->AlphaScaleFrameRender(hdc, mX, mY - Camera::GetInstance()->GetY(), mFrameX, mFrameY, 165, 105, mAlpha);
+
 }
