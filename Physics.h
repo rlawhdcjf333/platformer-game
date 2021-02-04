@@ -38,6 +38,7 @@ public:
 	void SetPlayer(Player* playerPtr) { mPlayer = playerPtr; }
 	void SetMap(vector <Map*> mapPtrList);
 	void SetEnemy(vector <Enemy*> enemyPtrList);
+	void SetDamage(float x) { mDamage = x; }
 
 	RECT GethitBox();
 

@@ -38,9 +38,6 @@ void Player::Release()
 
 void Player::Update()
 {
-	//오브젝트 충돌 판정 @ Singleton Physics cpp, MapObject Collision 
-	Physics::GetInstance()->IsonthePlatform(); 
-
 	//죽음과 부활 @ StatusSwitch cpp, Death and Resurrection
 	if (mHP < 0) { IsDead = true;}
 	if (IsDead) {
@@ -52,6 +49,12 @@ void Player::Update()
 		mGrendel->Update();
 		if (mGrendel->GetFrameX() == 2 and mGrendel->GetFrameCount() == 25) SafeDelete(mGrendel)
 	}
+
+	if(mMP<1000 and mFrameCount==10) mMP++;
+
+	//오브젝트 충돌 판정 @ Singleton Physics cpp, MapObject Collision 
+	Physics::GetInstance()->IsonthePlatform(); 
+
 	//키입력 처리 @ PlayerInput cpp,  Key input
 	PlayerInput();
 

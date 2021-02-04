@@ -98,10 +98,10 @@ void Player::DeathAnimation() {
 	//ºÎÈ° ±×·»µ¨ ÅÂÃÊ ±ÍÈ¯ , resurrection, summon Grendel, return to archeage
 	if (Input::GetInstance()->GetKeyD('R')) { 
 		IsDead = false; mImage = ImageManager::GetInstance()->FindImage(L"Player");
-		mX = WINSIZEX / 2-40, mY = 500; mRc = RectMake(mX, mY, mW, mH);
+		mX = WINSIZEX / 2-40, mY = 550; mRc = RectMake(mX, mY, mW, mH);
 		mStatus = Status::leftIdle; mFrameX = 1; mVec = 0; 
 		mHP = 1000, mMP = 1000;
-		Physics::GetInstance()->SetG(0);
+		Physics::GetInstance()->SetDamage(0);
 		mGrendel = new Grendel();
 		mGrendel->Init(mX-50, mY - 200);
 	}
